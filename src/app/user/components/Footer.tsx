@@ -160,7 +160,9 @@ const Footer: React.FC = () => {
       <div className="border-t border-gray-800 pt-8 relative z-50 bg-black">
         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           {/* Copyright */}
-          <div className="text-gray-400 text-sm">© 2024 - Socket Protocol</div>
+          <div className="text-gray-400 text-sm">
+            © 2025 -Zager Digital Services
+          </div>
 
           {/* Legal Links */}
           <div className="flex gap-4">

@@ -105,7 +105,7 @@ const BlogForm = () => {
             </h1>
           </div>
           <div className="text-yellow-300 text-xs sm:text-sm">
-            <span className="hidden sm:inline">Welcome back, </span>Admin
+            <span className="hidden sm:inline"></span>Admin
           </div>
         </header>
 

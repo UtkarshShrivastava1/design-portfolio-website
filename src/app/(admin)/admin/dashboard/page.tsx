@@ -7,16 +7,11 @@ import axios from "axios";
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [formData, setFormData] = useState<{
-    title: string;
-    description: string;
-    category: string;
-    file: File | null;
-  }>({
+  const [formData, setFormData] = useState({
     title: "",
     description: "",
     category: "",
-    file: null,
+    file: null as File | null,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,9 +51,7 @@ const AdminDashboard = () => {
       }
 
       await axios.post("/api/gallery", formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       setSubmitMessage("Gallery item uploaded successfully!");
@@ -68,7 +61,7 @@ const AdminDashboard = () => {
         category: "",
         file: null,
       });
-    } catch (error: unknown) {
+    } catch (error) {
       console.error(error);
       setSubmitMessage("Error submitting form. Please try again.");
     } finally {
@@ -77,10 +70,10 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-1 flex flex-col min-h-screen">
-        <header className="bg-black px-6 py-4 flex items-center justify-between">
+      <div className="flex-1 flex flex-col">
+        <header className="bg-black px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}
@@ -88,17 +81,19 @@ const AdminDashboard = () => {
             >
               <Menu size={24} />
             </button>
-            <h1 className="text-2xl font-bold text-yellow-400">Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-yellow-400">
+              Dashboard
+            </h1>
           </div>
-          <div className="text-yellow-300 text-sm">Welcome back, Admin</div>
+          <div className="text-yellow-300 text-xs sm:text-sm">Admin</div>
         </header>
 
-        <main className="flex-1 p-6 overflow-auto bg-black">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-black border border-yellow-400 rounded-xl p-8 shadow-xl w-[60%] mx-auto">
+        <main className="flex-1 px-4 py-6 sm:px-6 overflow-auto bg-black">
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-black border border-yellow-400 rounded-xl p-6 sm:p-8 shadow-xl w-full">
               <div className="flex items-center mb-6">
-                <Upload className="text-yellow-400 mr-3" size={28} />
-                <h2 className="text-2xl font-bold text-yellow-400">
+                <Upload className="text-yellow-400 mr-3" size={24} />
+                <h2 className="text-xl sm:text-2xl font-bold text-yellow-400">
                   Upload New Gallery Item
                 </h2>
               </div>
@@ -185,7 +180,7 @@ const AdminDashboard = () => {
                     className="w-full px-4 py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-yellow-400 file:text-black file:font-medium hover:file:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   />
                   {formData.file && (
-                    <p className="mt-2 text-sm text-yellow-300">
+                    <p className="mt-2 text-sm text-yellow-300 break-all">
                       Selected: {formData.file.name}
                     </p>
                   )}
@@ -215,7 +210,7 @@ const AdminDashboard = () => {
 
                 {submitMessage && (
                   <div
-                    className={`p-4 rounded-lg ${
+                    className={`p-4 rounded-lg text-sm ${
                       submitMessage.includes("Error")
                         ? "bg-red-900 border border-red-500 text-red-200"
                         : "bg-green-900 border border-green-500 text-green-200"

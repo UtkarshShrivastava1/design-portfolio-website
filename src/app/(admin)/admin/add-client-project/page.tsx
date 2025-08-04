@@ -3,6 +3,7 @@ import Sidebar from "@/app/(admin)/admin/components/Sidebar";
 import React, { useState } from "react";
 import { Plus, Upload, Save, Trash2 } from "lucide-react";
 import Image from "next/image";
+import { Menu } from "lucide-react";
 
 function AddClientForm() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -155,7 +156,7 @@ function AddClientForm() {
   };
 
   return (
-    <div className="flex h-screen bg-black overflow-hidden pt-0">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-black overflow-hidden">
       {/* Fixed Sidebar */}
       <div className="fixed top-0 left-0 h-screen w-64 z-30">
         <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
@@ -170,27 +171,25 @@ function AddClientForm() {
       </button>
 
       {/* Main content */}
-      <main className="flex-1 ml-0 lg:ml-64 h-screen overflow-y-auto">
+      {/* Main Content Area */}
+      <main className="flex-1 mt-16 lg:mt-0 lg:ml-64 overflow-y-auto bg-black text-white">
         {/* Header */}
-        <div className="p-6 lg:p-8 border-b border-gray-800">
-          <div className="flex items-center justify-between">
-            {/* Left Section: Title and Subtitle */}
-            <div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-yellow-400 mb-2">
-                Add Client Project
-              </h1>
-              <p className="text-gray-400">
-                Create a new client project with portfolio details.
-              </p>
-            </div>
-
-            {/* Right Section: Admin Welcome */}
-            <div className="text-right">
-              <p className="text-yellow-400 font-medium">Welcome back, Admin</p>
-              <div className="w-12 h-0.5 bg-yellow-400 ml-auto mt-1" />
-            </div>
+        <header className="bg-black px-3 sm:px-4 md:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-gray-800">
+          <div className="flex items-center">
+            <button
+              onClick={toggleSidebar}
+              className="lg:hidden mr-2 sm:mr-4 text-yellow-400 hover:text-yellow-300 transition-colors p-1"
+            >
+              <Menu size={20} className="sm:w-6 sm:h-6" />
+            </button>
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-400">
+              Dashboard
+            </h1>
           </div>
-        </div>
+          <div className="text-yellow-300 text-xs sm:text-sm">
+            <span className="hidden sm:inline"></span>Admin
+          </div>
+        </header>
 
         {/* Form */}
         <div className="p-6 lg:p-8">
