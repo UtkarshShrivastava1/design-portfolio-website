@@ -77,15 +77,15 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-yellow-400">
-            <User className="text-yellow-400 w-8 h-8 " />
+          <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-400">
+            <User className="text-gray-400 w-8 h-8 " />
           </div>
-          <h1 className="text-3xl font-bold text-yellow-400 mb-2">Admin Login</h1>
+          <h1 className="text-3xl font-bold text-gray-400 mb-2">Admin Login</h1>
           <p className="text-gray-600">Enter your credentials to access the admin panel</p>
         </div>
 
         {/* Login Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-yellow-200">
+        <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-200">
           <div className="space-y-6">
             {/* Error Message */}
             {error && (
@@ -108,7 +108,7 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 pl-10 text-black border-2 border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-0 transition-colors duration-200 bg-gray-50 focus:bg-white"
+                  className="w-full px-4 py-3 pl-10 text-black border-2 border-gray-200 rounded-lg focus:border-gray-400 focus:ring-0 transition-colors duration-200 bg-gray-50 focus:bg-white"
                   placeholder="admin@example.com"
                 />
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -128,7 +128,7 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
                   value={formData.password}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 pl-10 pr-12 text-black border-2 border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-0 transition-colors duration-200 bg-gray-50 focus:bg-white"
+                  className="w-full px-4 py-3 pl-10 pr-12 text-black border-2 border-gray-200 rounded-lg focus:border-gray-400 focus:ring-0 transition-colors duration-200 bg-gray-50 focus:bg-white"
                   placeholder="••••••••"
                 />
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -147,11 +147,11 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full bg-black text-yellow-400 py-3 px-4 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-yellow-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-black text-gray-400 py-3 px-4 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center space-x-2">
-                  <div className="w-5 h-5 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                   <span>Signing in...</span>
                 </div>
               ) : (

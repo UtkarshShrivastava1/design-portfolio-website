@@ -9,14 +9,14 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Section */}
           <div className="space-y-4">
-            <h3 className="text-yellow-400 font-semibold text-lg mb-4">
+            <h3 className="text-gray-400 font-semibold text-lg mb-4">
               Company
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Work with us
                 </a>
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Brand Assets
                 </a>
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Documentation
                 </a>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Get in Touch
                 </a>
@@ -50,14 +50,14 @@ const Footer: React.FC = () => {
 
           {/* Products Section */}
           <div className="space-y-4">
-            <h3 className="text-yellow-400 font-semibold text-lg mb-4">
+            <h3 className="text-gray-400 font-semibold text-lg mb-4">
               Products
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Socket API
                 </a>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Socket SDK
                 </a>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   SocketScan
                 </a>
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Bungee
                 </a>
@@ -91,14 +91,14 @@ const Footer: React.FC = () => {
 
           {/* Social Section */}
           <div className="space-y-4">
-            <h3 className="text-yellow-400 font-semibold text-lg mb-4">
+            <h3 className="text-gray-400 font-semibold text-lg mb-4">
               Social
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Discord
                 </a>
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Twitter
                 </a>
@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Mirror
                 </a>
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   LinkedIn
                 </a>
@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Telegram
                 </a>
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
           <div className="relative">
             {/* Text */}
             <div className="text-6xl sm:text-7xl lg:text-9xl font-bold text-gray-800 select-none tracking-wider">
-              DESIGNER
+              SOCH LABS
             </div>
 
             {/* Foreground gradient overlay */}
@@ -161,26 +161,26 @@ const Footer: React.FC = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           {/* Copyright */}
           <div className="text-gray-400 text-sm">
-            © 2025 -Zager Digital Services
+            powered by : <Link href={"https://www.zager.in/Home"} className="hover:text-white"> © Zager Digital services</Link>
           </div>
 
           {/* Legal Links */}
           <div className="flex gap-4">
             <Link
               href="/terms"
-              className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:text-white dark:hover:text-gray-100"
             >
               Terms of Service
             </Link>
             <Link
               href="/privacy"
-              className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:text-white dark:hover:text-gray-100"
             >
               Privacy Notice
             </Link>
             <Link
               href="/admin-login"
-              className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:text-white dark:hover:text-gray-100"
             >
               Admin
             </Link>

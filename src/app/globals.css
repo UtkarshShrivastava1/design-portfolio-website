@@ -1,5 +1,12 @@
+
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
+body {
+  font-family: 'Geist Mono', monospace;
+}
+
 
 @custom-variant dark (&:is(.dark *));
 

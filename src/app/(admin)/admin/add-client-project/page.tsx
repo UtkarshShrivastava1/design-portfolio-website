@@ -13,6 +13,7 @@ function AddClientForm() {
     workDid: "",
     testimonial: "",
   });
+  
 
   type Project = {
     id: number;
@@ -165,7 +166,7 @@ function AddClientForm() {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleSidebar}
-        className="lg:hidden fixed top-4 left-4 z-40 p-2 bg-yellow-400 text-black rounded-lg shadow-lg"
+        className="lg:hidden fixed top-4 left-4 z-40 p-2 bg-white text-black rounded-lg shadow-lg"
       >
         <Plus className="w-6 h-6 rotate-45" />
       </button>
@@ -178,15 +179,15 @@ function AddClientForm() {
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden mr-2 sm:mr-4 text-yellow-400 hover:text-yellow-300 transition-colors p-1"
+              className="lg:hidden mr-2 sm:mr-4 text-gray-400 hover:text-gray-300 transition-colors p-1"
             >
               <Menu size={20} className="sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-400">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
               Dashboard
             </h1>
           </div>
-          <div className="text-yellow-300 text-xs sm:text-sm">
+          <div className="text-gray-300 text-xs sm:text-sm">
             <span className="hidden sm:inline"></span>Admin
           </div>
         </header>
@@ -194,18 +195,38 @@ function AddClientForm() {
         {/* Form */}
         <div className="p-6 lg:p-8">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-black border border-yellow-400 rounded-2xl p-6 lg:p-8">
+            <div className="bg-black border border-gray-400 rounded-2xl p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Client Info */}
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-yellow-400 flex items-center">
+                  <div className="flex items-center justify-between">
+                    <div>
+                       <h2 className="text-2xl font-semibold text-gray-400 flex items-center">
                     <Upload className="mr-3" size={24} />
                     Client Information
                   </h2>
+                    </div>
+                    <div className="flex items-center">
+                      <button
+                        type="button"
+                        className="text-gray-400 hover:text-gray-300 transition-colors p-1"
+                      >
+                         <a
+                      className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-base font-medium text-black hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+                      href="/admin/add-client-project/viewProjects"
+                    >
+                     
+                      View Client Projects
+                    </a>
+                      </button>
+                    </div>
+                  
+                  </div>
+                 
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="block text-yellow-400 font-medium">
+                      <label className="block text-gray-400 font-medium">
                         Client Name *
                       </label>
                       <input
@@ -214,13 +235,13 @@ function AddClientForm() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none"
                         placeholder="Enter client name"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-yellow-400 font-medium">
+                      <label className="block text-gray-400 font-medium">
                         Company *
                       </label>
                       <input
@@ -229,13 +250,13 @@ function AddClientForm() {
                         value={formData.company}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none"
                         placeholder="Enter company name"
                       />
                     </div>
 
                     <div className="lg:col-span-2 space-y-2">
-                      <label className="block text-yellow-400 font-medium">
+                      <label className="block text-gray-400 font-medium">
                         Work Description *
                       </label>
                       <textarea
@@ -244,13 +265,13 @@ function AddClientForm() {
                         onChange={handleInputChange}
                         required
                         rows={4}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none resize-none"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none resize-none"
                         placeholder="Describe the work performed for this client"
                       />
                     </div>
 
                     <div className="lg:col-span-2 space-y-2">
-                      <label className="block text-yellow-400 font-medium">
+                      <label className="block text-gray-400 font-medium">
                         Testimonial
                       </label>
                       <textarea
@@ -258,7 +279,7 @@ function AddClientForm() {
                         value={formData.testimonial}
                         onChange={handleInputChange}
                         rows={3}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none resize-none"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none resize-none"
                         placeholder="Client testimonial (optional)"
                       />
                     </div>
@@ -268,7 +289,7 @@ function AddClientForm() {
                 {/* Projects */}
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-semibold text-yellow-400 flex items-center">
+                    <h2 className="text-2xl font-semibold text-gray-400 flex items-center">
                       <Upload className="mr-3" size={24} />
                       Projects ({projects.length})
                     </h2>
@@ -276,7 +297,7 @@ function AddClientForm() {
                     <button
                       type="button"
                       onClick={addProject}
-                      className="flex items-center gap-2 px-6 py-3 bg-yellow-400 text-black rounded-xl hover:bg-yellow-300 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                      className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-xl hover:bg-gray-300 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                       <Plus className="w-4 h-4" />
                       Add Project
@@ -303,7 +324,7 @@ function AddClientForm() {
                           className="border border-gray-700 rounded-xl p-6 bg-gray-900"
                         >
                           <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-lg font-semibold text-yellow-400">
+                            <h3 className="text-lg font-semibold text-gray-400">
                               Project {index + 1}
                             </h3>
                             <button
@@ -318,7 +339,7 @@ function AddClientForm() {
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {/* Thumbnail */}
                             <div className="lg:col-span-2 space-y-2">
-                              <label className="block text-yellow-400 font-medium">
+                              <label className="block text-gray-400 font-medium">
                                 Project Thumbnail *
                               </label>
                               <div className="relative">
@@ -337,7 +358,7 @@ function AddClientForm() {
                                 />
                                 <label
                                   htmlFor={`thumbnail-${project.id}`}
-                                  className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer hover:border-yellow-400 transition-all duration-200 bg-gray-800"
+                                  className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer hover:border-gray-400 transition-all duration-200 bg-gray-800"
                                 >
                                   {project.thumbnailURL ? (
                                     <div className="relative w-full h-full">
@@ -351,7 +372,7 @@ function AddClientForm() {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                       />
                                       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-xl opacity-0 hover:opacity-100 transition-opacity">
-                                        <Upload className="w-6 h-6 text-yellow-400" />
+                                        <Upload className="w-6 h-6 text-gray-400" />
                                       </div>
                                     </div>
                                   ) : (
@@ -368,7 +389,7 @@ function AddClientForm() {
 
                             {/* Links */}
                             <div className="space-y-2">
-                              <label className="block text-yellow-400 font-medium">
+                              <label className="block text-gray-400 font-medium">
                                 YouTube Link
                               </label>
                               <input
@@ -381,13 +402,13 @@ function AddClientForm() {
                                     e.target.value
                                   )
                                 }
-                                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none"
+                                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none"
                                 placeholder="https://youtube.com/..."
                               />
                             </div>
 
                             <div className="space-y-2">
-                              <label className="block text-yellow-400 font-medium">
+                              <label className="block text-gray-400 font-medium">
                                 Instagram Link
                               </label>
                               <input
@@ -400,7 +421,7 @@ function AddClientForm() {
                                     e.target.value
                                   )
                                 }
-                                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-yellow-200 placeholder-gray-500 focus:border-yellow-400 focus:outline-none"
+                                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-gray-200 placeholder-gray-500 focus:border-gray-400 focus:outline-none"
                                 placeholder="https://instagram.com/..."
                               />
                             </div>
@@ -416,7 +437,7 @@ function AddClientForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting || projects.length === 0}
-                    className="flex items-center gap-3 px-12 py-4 bg-yellow-400 text-black rounded-xl hover:bg-yellow-300 disabled:bg-gray-600 disabled:text-gray-400 transition-all duration-200 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none text-lg"
+                    className="flex items-center gap-3 px-12 py-4 bg-white text-black rounded-xl hover:bg-gray-300 disabled:bg-gray-600 disabled:text-gray-400 transition-all duration-200 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none text-lg"
                   >
                     {isSubmitting ? (
                       <>

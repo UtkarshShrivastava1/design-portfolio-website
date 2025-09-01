@@ -58,13 +58,13 @@ const ClientPage: React.FC = () => {
         >
           {/* Left: Projects Carousel */}
           <div className="lg:w-1/2 mb-10 lg:mb-0">
-            <h1 className="text-3xl lg:text-4xl font-bold text-yellow-400 mb-6">
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-400 mb-6">
               Projects by {client.name}
             </h1>
 
             {Array.isArray(client.projects) && client.projects.length > 0 && (
               <div>
-                <div className="bg-gray-900 rounded-lg overflow-hidden mb-6 border-2 border-yellow-400">
+                <div className="bg-gray-900 rounded-lg overflow-hidden mb-6 border-2 border-gray-400">
                   <div className="aspect-[16/9] relative">
                     <img
                       src={
@@ -83,7 +83,7 @@ const ClientPage: React.FC = () => {
                       rel="noopener noreferrer"
                       className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-black/40 transition-opacity"
                     >
-                      <Play className="w-12 h-12 text-yellow-400" />
+                      <Play className="w-12 h-12 text-gray-400" />
                     </a>
                   </div>
                 </div>
@@ -101,8 +101,8 @@ const ClientPage: React.FC = () => {
                       }
                       className={`aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         activeIndexes[clientIndex] === idx
-                          ? "border-yellow-400 ring-2 ring-yellow-400/50"
-                          : "border-gray-600 hover:border-yellow-400"
+                          ? "border-gray-400 ring-2 ring-gray-400/50"
+                          : "border-gray-600 hover:border-gray-400"
                       }`}
                     >
                       <img
@@ -120,13 +120,13 @@ const ClientPage: React.FC = () => {
           {/* Right: Client Info */}
           <div className="lg:w-1/2 bg-gray-900 p-6 lg:p-8 rounded-lg h-screen">
             <h2 className="text-3xl font-bold text-white mb-2">{client.name}</h2>
-            <p className="text-yellow-400 text-lg font-medium mb-4">
+            <p className="text-gray-400 text-lg font-medium mb-4">
               {client.company}
             </p>
             <p className="text-gray-300 mb-6 italic">&quot;{client.workDid}&quot;</p>
 
-            <div className="bg-black p-6 rounded-lg border-l-4 border-yellow-400">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-3">
+            <div className="bg-black p-6 rounded-lg border-l-4 border-gray-400">
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
                 Testimonial
               </h3>
               <p className="text-gray-300 leading-relaxed">

@@ -10,7 +10,7 @@ const gallerySchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    catogery:{
+   category:{
         type:String,
         required:true,
     },

@@ -180,15 +180,15 @@ const ContactSection: React.FC = () => {
       {/* Dynamic Background Effects */}
       <div className="absolute inset-0">
         {/* Animated Mesh Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 via-transparent to-amber-400/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-200/5 via-transparent to-gray-500/5"></div>
         
         {/* Floating Orbs */}
-        <div className="absolute top-32 left-32 w-96 h-96 bg-gradient-to-r from-yellow-400/10 to-amber-400/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-32 w-72 h-72 bg-gradient-to-r from-amber-400/8 to-yellow-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-32 left-32 w-96 h-96 bg-gradient-to-r from-gray-200/10 to-gray-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-32 w-72 h-72 bg-gradient-to-r from-gray-500/8 to-gray-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
         
         {/* Interactive Mouse Glow */}
         <div 
-          className="absolute w-80 h-80 bg-gradient-to-r from-yellow-400/8 to-amber-400/8 rounded-full blur-3xl pointer-events-none transition-all duration-1000 ease-out"
+          className="absolute w-80 h-80 bg-gradient-to-r from-gray-200/8 to-gray-500/8 rounded-full blur-3xl pointer-events-none transition-all duration-1000 ease-out"
           style={{
             left: mousePosition.x - 160,
             top: mousePosition.y - 160,
@@ -196,9 +196,9 @@ const ContactSection: React.FC = () => {
         ></div>
 
         {/* Geometric Patterns */}
-        <div className="absolute top-20 right-20 w-6 h-6 border-2 border-yellow-400/20 rotate-45 animate-spin" style={{ animationDuration: '25s' }}></div>
-        <div className="absolute bottom-20 left-20 w-4 h-4 bg-yellow-400/30 animate-bounce" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-amber-400/40 animate-ping" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-20 right-20 w-6 h-6 border-2 border-gray-200/20 rotate-45 animate-spin" style={{ animationDuration: '25s' }}></div>
+        <div className="absolute bottom-20 left-20 w-4 h-4 bg-white/30 animate-bounce" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-gray-500/40 animate-ping" style={{ animationDelay: '4s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -208,11 +208,11 @@ const ContactSection: React.FC = () => {
         }`}>
           <div className="inline-block relative">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Heart className="w-5 h-5 text-yellow-400 animate-pulse" />
-              <span className="text-yellow-400 font-bold text-sm tracking-[0.3em] uppercase">
+              <Heart className="w-5 h-5 text-gray-400 animate-pulse" />
+              <span className="text-gray-400 font-bold text-sm tracking-[0.3em] uppercase">
                 Let&apos;s Connect
               </span>
-              <Heart className="w-5 h-5 text-yellow-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <Heart className="w-5 h-5 text-gray-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
             
             <h2 className="text-6xl md:text-6xl font-black text-white mb-8 relative tracking-tight">
@@ -220,19 +220,19 @@ const ContactSection: React.FC = () => {
                 Get In
               </span>
               <br />
-              <span className="bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent animate-pulse">
+              <span className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-500 bg-clip-text text-transparent animate-pulse">
                 Touch
               </span>
               
               {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-10 h-10 border-2 border-yellow-400/50 rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
-              <Sparkles className="absolute -bottom-4 -left-4 w-8 h-8 text-yellow-400/70 animate-bounce" style={{ animationDelay: '1s' }} />
+              <div className="absolute -top-6 -right-6 w-10 h-10 border-2 border-gray-200/50 rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+              <Sparkles className="absolute -bottom-4 -left-4 w-8 h-8 text-gray-400/70 animate-bounce" style={{ animationDelay: '1s' }} />
             </h2>
           </div>
           
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
             Ready to create something 
-            <span className="text-yellow-400 font-semibold"> extraordinary</span>? 
+            <span className="text-gray-400 font-semibold"> extraordinary</span>? 
             Let&apos;s bring your vision to life and make magic happen together.
           </p>
         </div>
@@ -244,11 +244,11 @@ const ContactSection: React.FC = () => {
           }`}>
             <div className="relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-800/50 p-8 md:p-12 rounded-2xl">
               {/* Form Glow Effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-400/5 via-transparent to-amber-400/5 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gray-200/5 via-transparent to-gray-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative z-10">
                 <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                  <Zap className="w-8 h-8 text-yellow-400" />
+                  <Zap className="w-8 h-8 text-gray-400" />
                   Send a Message
                 </h3>
                 <p className="text-gray-400 mb-8">
@@ -286,7 +286,7 @@ const ContactSection: React.FC = () => {
                       onBlur={() => setFocusedField(null)}
                       className={`w-full px-4 py-4 bg-gray-900/50 border-2 rounded-lg text-white placeholder-gray-500 transition-all duration-300 focus:outline-none ${
                         focusedField === 'name' 
-                          ? 'border-yellow-400 shadow-lg shadow-yellow-400/20 bg-gray-900/70' 
+                          ? 'border-gray-200 shadow-lg shadow-gray-200/20 bg-gray-900/70' 
                           : errors.name 
                             ? 'border-red-500' 
                             : 'border-gray-700 hover:border-gray-600'
@@ -302,7 +302,7 @@ const ContactSection: React.FC = () => {
                     
                     {/* Focus Glow Effect */}
                     {focusedField === 'name' && (
-                      <div className="absolute inset-0 rounded-lg bg-yellow-400/5 blur-sm pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-lg bg-white/5 blur-sm pointer-events-none"></div>
                     )}
                   </div>
 
@@ -321,7 +321,7 @@ const ContactSection: React.FC = () => {
                       onBlur={() => setFocusedField(null)}
                       className={`w-full px-4 py-4 bg-gray-900/50 border-2 rounded-lg text-white placeholder-gray-500 transition-all duration-300 focus:outline-none ${
                         focusedField === 'email' 
-                          ? 'border-yellow-400 shadow-lg shadow-yellow-400/20 bg-gray-900/70' 
+                          ? 'border-gray-200 shadow-lg shadow-gray-200/20 bg-gray-900/70' 
                           : errors.email 
                             ? 'border-red-500' 
                             : 'border-gray-700 hover:border-gray-600'
@@ -336,7 +336,7 @@ const ContactSection: React.FC = () => {
                     )}
                     
                     {focusedField === 'email' && (
-                      <div className="absolute inset-0 rounded-lg bg-yellow-400/5 blur-sm pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-lg bg-white/5 blur-sm pointer-events-none"></div>
                     )}
                   </div>
 
@@ -355,7 +355,7 @@ const ContactSection: React.FC = () => {
                       onBlur={() => setFocusedField(null)}
                       className={`w-full px-4 py-4 bg-gray-900/50 border-2 rounded-lg text-white placeholder-gray-500 transition-all duration-300 focus:outline-none resize-none ${
                         focusedField === 'message' 
-                          ? 'border-yellow-400 shadow-lg shadow-yellow-400/20 bg-gray-900/70' 
+                          ? 'border-gray-200 shadow-lg shadow-gray-200/20 bg-gray-900/70' 
                           : errors.message 
                             ? 'border-red-500' 
                             : 'border-gray-700 hover:border-gray-600'
@@ -370,7 +370,7 @@ const ContactSection: React.FC = () => {
                     )}
                     
                     {focusedField === 'message' && (
-                      <div className="absolute inset-0 rounded-lg bg-yellow-400/5 blur-sm pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-lg bg-white/5 blur-sm pointer-events-none"></div>
                     )}
                   </div>
 
@@ -378,7 +378,7 @@ const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative w-full overflow-hidden bg-gradient-to-r from-yellow-400 to-amber-400 text-black px-8 py-4 font-bold text-lg transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-400/25 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg"
+                    className="group relative w-full overflow-hidden bg-gradient-to-r from-gray-200 to-gray-500 text-black px-8 py-4 font-bold text-lg transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/25 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-3">
                       {isSubmitting ? (
@@ -395,7 +395,7 @@ const ContactSection: React.FC = () => {
                     </span>
                     
                     {/* Button Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute -top-2 -left-2 w-4 h-4 bg-white/30 rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-150"></div>
                   </button>
                 </form>
@@ -411,33 +411,33 @@ const ContactSection: React.FC = () => {
               {/* Direct Contact */}
               <div className="relative bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm border border-gray-800/30 p-8 rounded-2xl">
                 <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3 mt-4">
-                  <Mail className="w-8 h-8 text-yellow-400" />
+                  <Mail className="w-8 h-8 text-gray-400" />
                   Direct Contact
                 </h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
-                    <Mail className="w-6 h-6 text-yellow-400" />
+                    <Mail className="w-6 h-6 text-gray-400" />
                     <div>
                       <p className="text-gray-400 text-sm">Email</p>
-                      <a href="mailto:hello@yourdesign.com" className="text-white hover:text-yellow-400 transition-colors duration-300 font-medium">
+                      <a href="mailto:hello@yourdesign.com" className="text-white hover:text-gray-400 transition-colors duration-300 font-medium">
                         hello@yourdesign.com
                       </a>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
-                    <Phone className="w-6 h-6 text-yellow-400" />
+                    <Phone className="w-6 h-6 text-gray-400" />
                     <div>
                       <p className="text-gray-400 text-sm">Phone</p>
-                      <a href="tel:+1234567890" className="text-white hover:text-yellow-400 transition-colors duration-300 font-medium">
+                      <a href="tel:+1234567890" className="text-white hover:text-gray-400 transition-colors duration-300 font-medium">
                         +1 (234) 567-8900
                       </a>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
-                    <MapPin className="w-6 h-6 text-yellow-400" />
+                    <MapPin className="w-6 h-6 text-gray-400" />
                     <div>
                       <p className="text-gray-400 text-sm">Location</p>
                       <p className="text-white font-medium">New York, NY</p>
@@ -449,7 +449,7 @@ const ContactSection: React.FC = () => {
               {/* Social Media */}
               <div className="relative bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm border border-gray-800/30 p-8 rounded-2xl">
                 <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-                  <Sparkles className="w-8 h-8 text-yellow-400" />
+                  <Sparkles className="w-8 h-8 text-gray-400" />
                   Follow Me
                 </h3>
                 
@@ -464,9 +464,9 @@ const ContactSection: React.FC = () => {
                     >
                       <div className="relative">
                         {social.icon}
-                        <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-white/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                      <span className="text-white group-hover:text-yellow-400 transition-colors duration-300 font-medium">
+                      <span className="text-white group-hover:text-gray-400 transition-colors duration-300 font-medium">
                         {social.name}
                       </span>
                     </a>

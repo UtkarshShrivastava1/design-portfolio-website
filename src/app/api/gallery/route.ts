@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
 
     const title = formData.get("title");
     const description = formData.get("description");
-    const catogery = formData.get("catogery");
+    const category = formData.get("category");
     const file = formData.get("file");
 
     
@@ -38,13 +38,13 @@ export async function POST(req: NextRequest) {
     const newImage = new Gallery({
       title,
       description,
-      catogery,
+      category,
       imageURL: imageUrl,
     });
+
+
     await newImage.save();
-
-    // console.log(newImage);
-
+    // console.log('newImage', newImage);
     return NextResponse.json(
       {
         message: "Gallery item uploaded successfully",

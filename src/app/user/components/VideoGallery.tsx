@@ -168,7 +168,7 @@ const VideoGallery = () => {
     return (
       <div
         key={video.id}
-        className={`group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-yellow-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-400/20 w-full h-full`}
+        className={`group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-gray-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-400/20 w-full h-full`}
         onMouseEnter={() => setHoveredVideo(video.id)}
         onMouseLeave={() => setHoveredVideo(null)}
       >
@@ -198,7 +198,7 @@ const VideoGallery = () => {
           )}
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div className="absolute inset-0 bg-yellow-400/0 group-hover:bg-yellow-400/10 transition-colors duration-500"></div>
+          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
 
           {/* Live indicator */}
           {video.isLive && (
@@ -209,7 +209,7 @@ const VideoGallery = () => {
           )}
 
           {/* Category badge */}
-          <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 text-yellow-400 text-xs font-semibold rounded-full">
+          <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 text-gray-400 text-xs font-semibold rounded-full">
             {video.category}
           </div>
         </div>
@@ -217,9 +217,9 @@ const VideoGallery = () => {
         {/* Play Button Overlay */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div
-            className={`w-14 h-14 rounded-full bg-yellow-400 flex items-center justify-center transform transition-all duration-500 ${
+            className={`w-14 h-14 rounded-full bg-white flex items-center justify-center transform transition-all duration-500 ${
               hoveredVideo === video.id
-                ? "scale-110 shadow-2xl shadow-yellow-400/50"
+                ? "scale-110 shadow-2xl shadow-gray-400/50"
                 : "scale-100"
             } ${playingVideo === video.id ? "opacity-0" : "opacity-100"}`}
           >
@@ -240,7 +240,7 @@ const VideoGallery = () => {
               </div>
             </div>
             <button
-              className="p-1.5 rounded-full bg-black/50 hover:bg-yellow-400/20 transition-colors"
+              className="p-1.5 rounded-full bg-black/50 hover:bg-white/20 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 handleVideoPlay(video);
@@ -250,7 +250,7 @@ const VideoGallery = () => {
             </button>
           </div>
           <h3
-            className={`font-bold text-white group-hover:text-yellow-400 transition-colors mb-1 ${
+            className={`font-bold text-white group-hover:text-white transition-colors mb-1 ${
               isPortrait ? "text-sm leading-tight" : "text-base"
             }`}
           >
@@ -265,7 +265,7 @@ const VideoGallery = () => {
           </p>
         </div>
 
-        <div className="absolute inset-0 border-2 border-yellow-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+        <div className="absolute inset-0 border-2 border-gray-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
       </div>
     );
   };
@@ -273,10 +273,10 @@ const VideoGallery = () => {
   return (
     <div className="min-h-screen bg-black text-white pb-20 px-4 sm:px-6 lg:px-8">
       <div className="text-center py-16">
-        <h1 className="text-4xl sm:text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-          VIDEO GALLERY
+        <h1 className="text-4xl sm:text-6xl font-black mb-4 bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
+        <span className="text-white"> VIDEO</span>   GALLERY
         </h1>
-        <div className="w-32 h-1 bg-yellow-500 mx-auto mb-4"></div>
+        <div className="w-32 h-1 bg-gray-500 mx-[49%] mb-4"></div>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
           Explore my design process through video case studies and walkthroughs
         </p>
@@ -312,7 +312,7 @@ const VideoGallery = () => {
           <div className="relative w-full max-w-4xl">
             <button
               onClick={closeVideoModal}
-              className="absolute -top-12 right-0 text-white hover:text-yellow-400 transition-colors"
+              className="absolute -top-12 right-0 text-white hover:text-gray-400 transition-colors"
             >
               <svg
                 className="w-8 h-8"
@@ -350,7 +350,7 @@ const VideoGallery = () => {
                 <p className="text-gray-300 mb-4">
                   {selectedVideo.description}
                 </p>
-                <p className="text-yellow-400">
+                <p className="text-gray-400">
                   Video coming soon! Add videoUrl to enable playback.
                 </p>
               </div>
@@ -368,9 +368,9 @@ const VideoGallery = () => {
 
       {/* Background decorative elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-yellow-400/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-yellow-600/3 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/3 w-64 h-64 bg-yellow-500/4 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-gray-600/3 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/3 w-64 h-64 bg-gray-500/4 rounded-full blur-3xl"></div>
       </div>
     </div>
   );

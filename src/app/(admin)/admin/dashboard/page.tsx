@@ -50,6 +50,14 @@ const AdminDashboard = () => {
         formDataToSend.append("file", formData.file);
       }
 
+      console.log(
+        "formDataToSend",
+        formDataToSend.get("title"),
+        formDataToSend.get("description"),
+        formDataToSend.get("category"),
+        formDataToSend.get("file")
+      );
+
       await axios.post("/api/gallery", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -77,32 +85,44 @@ const AdminDashboard = () => {
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden mr-4 text-yellow-400 hover:text-yellow-300"
+              className="lg:hidden mr-4 text-gray-400 hover:text-gray-300"
             >
               <Menu size={24} />
             </button>
-            <h1 className="text-xl sm:text-2xl font-bold text-yellow-400">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-400">
               Dashboard
             </h1>
           </div>
-          <div className="text-yellow-300 text-xs sm:text-sm">Admin</div>
+          <div className="text-gray-300 text-xs sm:text-sm">Admin</div>
         </header>
 
         <main className="flex-1 px-4 py-6 sm:px-6 overflow-auto bg-black">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-black border border-yellow-400 rounded-xl p-6 sm:p-8 shadow-xl w-full">
-              <div className="flex items-center mb-6">
-                <Upload className="text-yellow-400 mr-3" size={24} />
-                <h2 className="text-xl sm:text-2xl font-bold text-yellow-400">
-                  Upload New Gallery Item
-                </h2>
+            <div className="bg-black border border-gray-400 rounded-xl p-6 sm:p-8 shadow-xl w-full">
+              <div className="mb-6 flex justify-around">
+                <div className="flex items-center mb-6">
+                  <Upload className="text-gray-400 mr-3" size={24} />
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-400">
+                    Upload New Gallery Item
+                  </h2>
+                </div>
+
+                
+                <div className="flex items-center mb-6">
+                  <a
+                    className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-sm font-medium text-black hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+                    href="/admin/dashboard/viewGallery"
+                  >
+                    View Gallery
+                  </a>
+                </div>
               </div>
 
               <div className="space-y-6">
                 <div>
                   <label
                     htmlFor="title"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Title *
                   </label>
@@ -114,14 +134,14 @@ const AdminDashboard = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="Enter image title"
-                    className="w-full px-4 py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Description *
                   </label>
@@ -133,14 +153,14 @@ const AdminDashboard = () => {
                     required
                     rows={4}
                     placeholder="Enter image description"
-                    className="w-full px-4 py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 resize-none"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 resize-none"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="category"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Category *
                   </label>
@@ -150,7 +170,7 @@ const AdminDashboard = () => {
                     value={formData.category}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400"
                   >
                     <option value="">Select a category</option>
                     <option value="nature">Nature</option>
@@ -167,7 +187,7 @@ const AdminDashboard = () => {
                 <div>
                   <label
                     htmlFor="file-input"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Upload Image *
                   </label>
@@ -177,10 +197,10 @@ const AdminDashboard = () => {
                     onChange={handleFileChange}
                     accept="image/*"
                     required
-                    className="w-full px-4 py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-yellow-400 file:text-black file:font-medium hover:file:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-white file:text-black file:font-medium hover:file:bg-tranparent  hover:file:bg-gray-300  focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
                   {formData.file && (
-                    <p className="mt-2 text-sm text-yellow-300 break-all">
+                    <p className="mt-2 text-sm text-gray-300 break-all">
                       Selected: {formData.file.name}
                     </p>
                   )}
@@ -191,10 +211,10 @@ const AdminDashboard = () => {
                     type="button"
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className={`w-full py-3 px-6 rounded-lg font-medium text-black transition-all duration-200 transform hover:scale-105 ${
+                    className={` w-full inline-block rounded-sm border border-white bg-gray-400 px-12 py-3 text-sm font-medium text-black hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden ${
                       isSubmitting
-                        ? "bg-yellow-600 cursor-not-allowed"
-                        : "bg-yellow-400 hover:bg-yellow-300 hover:shadow-lg"
+                        ? "bg-gray-600 cursor-not-allowed"
+                        : "bg-white hover:bg-gray-300 hover:shadow-lg"
                     }`}
                   >
                     {isSubmitting ? (

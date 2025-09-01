@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
 import admin from "../models/adminModel";
 import bcrypt from "bcryptjs";
+// import './envConfig.js'
 
 // Ensure environment variables are read
+// console.log(process.env.MONGO_URI!);
 const DEV_URI = process.env.MONGO_URI;
 const PROD_URI = process.env.MONGO_ATLAS_URI;
 const ENV = process.env.NODE_ENV || "development";
 
 // Choose correct URI
 const URI = ENV === "development" ? DEV_URI : PROD_URI;
+
 
 export async function connectToDatabse() {
   if (!URI) {

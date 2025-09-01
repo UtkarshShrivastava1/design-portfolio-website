@@ -126,12 +126,12 @@ const MyWork: React.FC = () => {
         {/* Header */}
         <div className="text-center pt-8 pb-4">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
-            My <span className="text-yellow-400">Works</span>
+            My <span className="text-gray-400">Works</span>
           </h1>
-          <div className="w-16 h-1 bg-yellow-400 mx-auto mb-3"></div>
+          <div className="w-16 h-1 bg-white mx-auto mb-3"></div>
           <p className="text-gray-300 text-sm sm:text-base max-w-xl mx-auto px-4">
             Here are a few past design projects I&apos;ve worked on. Want to see more?{' '}
-            <span className="text-yellow-400 hover:text-yellow-300 cursor-pointer transition-colors">
+            <span className="text-gray-400 hover:text-gray-300 cursor-pointer transition-colors">
               Email me
             </span>
           </p>
@@ -149,7 +149,7 @@ const MyWork: React.FC = () => {
                 {getCurrentItems().map((item, index) => (
                   <div
                     key={`${currentSet}-${item.id}`}
-                    className="group relative h-48 sm:h-56 lg:h-64 rounded-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20 mb-8"
+                    className="group relative h-48 sm:h-56 lg:h-64 rounded-xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-gray-400/20 mb-8"
                     style={{
                       backgroundImage: `url(${item.backgroundImage})`,
                       backgroundSize: 'cover',
@@ -160,21 +160,21 @@ const MyWork: React.FC = () => {
                     {/* Background overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/60 to-black/90"></div>
                     
-                    {/* Yellow accent border */}
-                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400/50 rounded-xl transition-all duration-300"></div>
+                    {/* gray accent border */}
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-gray-400/50 rounded-xl transition-all duration-300"></div>
                     
                     {/* Content */}
                     <div className="relative h-full flex flex-col justify-between p-4 sm:p-6">
                       {/* Category Tag */}
                       {/* <div className="self-start">
-                        <span className="bg-yellow-400 text-black px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
+                        <span className="bg-white text-black px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
                           {item.category}
                         </span>
                       </div> */}
                       
                       {/* Logo */}
                       <div className="flex-1 flex items-center justify-center">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-white/20 group-hover:border-yellow-400/50 transition-all duration-300 transform group-hover:scale-110">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-white/20 group-hover:border-gray-400/50 transition-all duration-300 transform group-hover:scale-110">
                           <img 
                             src={item.logo} 
                             alt={`${item.companyName} logo`}
@@ -185,15 +185,15 @@ const MyWork: React.FC = () => {
                       
                       {/* Company Name */}
                       <div className="text-center">
-                        <h3 className="text-white font-bold text-sm sm:text-base lg:text-lg mb-1 group-hover:text-yellow-400 transition-colors duration-300">
+                        <h3 className="text-white font-bold text-sm sm:text-base lg:text-lg mb-1 group-hover:text-gray-400 transition-colors duration-300">
                           {item.companyName}
                         </h3>
-                        <div className="w-0 group-hover:w-full h-0.5 bg-yellow-400 mx-auto transition-all duration-500"></div>
+                        <div className="w-0 group-hover:w-full h-0.5 bg-gray-600 mx-auto transition-all duration-500"></div>
                       </div>
                     </div>
                     
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-400/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 ))}
               </div>
@@ -215,7 +215,7 @@ const MyWork: React.FC = () => {
               }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 currentSet === index 
-                  ? 'bg-yellow-400 scale-125' 
+                  ? 'bg-white scale-125' 
                   : 'bg-gray-600 hover:bg-gray-400'
               }`}
               aria-label={`Go to set ${index + 1}`}

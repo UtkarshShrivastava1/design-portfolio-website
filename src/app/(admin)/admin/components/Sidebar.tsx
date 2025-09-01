@@ -18,6 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: sidebarValues) => {
     { icon: Upload, label: 'Upload blog', href: '/admin/blog' },
     { icon: Upload, label: 'Add Client Project', href: '/admin/add-client-project' },
     { icon: Upload, label: 'Add Testimonial', href: '/admin/testimonial' },
+    { icon: Upload, label: 'Add Videos', href: '/admin/videos' },
   ];
 
   const handleLogout = async () => {
@@ -48,16 +49,16 @@ const Sidebar = ({ isOpen, toggleSidebar }: sidebarValues) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-screen w-64 bg-black border-r border-yellow-400 transform transition-transform duration-300 ease-in-out z-50 lg:relative lg:translate-x-0 pt-20 ${
+        className={`fixed left-0 top-0 h-screen w-64 bg-black border-r border-gray-400 transform transition-transform duration-300 ease-in-out z-50 lg:relative lg:translate-x-0 pt-20 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6">
-          <h2 className="text-xl font-bold text-yellow-400">Admin Panel</h2>
+          <h2 className="text-xl font-bold text-gray-400">Admin Panel</h2>
           <button
             onClick={toggleSidebar}
-            className="lg:hidden text-yellow-400 hover:text-yellow-300 transition-colors"
+            className="lg:hidden text-gray-400 hover:text-gray-300 transition-colors"
           >
             <X size={24} />
           </button>
@@ -75,8 +76,8 @@ const Sidebar = ({ isOpen, toggleSidebar }: sidebarValues) => {
                 href={item.href}
                 className={`flex items-center px-4 py-3 mb-2 rounded-lg transition-all duration-200 group ${
                   isActive
-                    ? 'bg-yellow-400 text-black font-medium'
-                    : 'text-yellow-100 hover:bg-yellow-400 hover:text-black hover:translate-x-2'
+                    ? 'bg-white text-black font-medium'
+                    : 'text-gray-100 hover:bg-white hover:text-black hover:translate-x-2'
                 }`}
               >
                 <IconComponent size={20} className="mr-3" />
@@ -90,7 +91,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: sidebarValues) => {
         <div className="absolute bottom-6 left-4 right-4">
           <div
             onClick={handleLogout}
-            className="text-yellow-100 hover:bg-yellow-400 hover:text-black hover:translate-x-2 flex items-center px-4 py-3 mb-2 rounded-lg transition-all duration-200 hover:cursor-pointer"
+            className="text-gray-100 hover:bg-white hover:text-black hover:translate-x-2 flex items-center px-4 py-3 mb-2 rounded-lg transition-all duration-200 hover:cursor-pointer"
           >
             <LogOut size={20} className="mr-3" />
             Logout

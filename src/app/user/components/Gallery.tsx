@@ -90,7 +90,7 @@ const GallerySection = () => {
       <div className="bg-gray-50 py-16 relative">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-500"></div>
             <p className="mt-2 text-gray-600">Loading gallery...</p>
           </div>
         </div>
@@ -105,12 +105,12 @@ const GallerySection = () => {
         <div className="relative text-center mb-16">
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-black/5"></div>
           <h2 className="relative inline-block text-3xl md:text-4xl font-bold text-white">
-            Work <span className="text-yellow-500">Gallery</span>
+            Work <span className="text-gray-500">Gallery</span>
           </h2>
-          <div className="mt-4 flex justify-center">
-            <div className="w-16 h-1 bg-yellow-500"></div>
+          <div className="mt-4 flex justify-center ml-[4%]">
+            <div className="w-16 h-1 bg-gray-500"></div>
           </div>
-          <p className="mt-4 max-w-2xl mx-auto text-gray-600 text-sm sm:text-base">
+          <p className="mt-4 max-w-2xl mx-auto text-gray-100 text-sm sm:text-base">
             Explore my work Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, aperiam?
           </p>
         </div>
@@ -125,8 +125,8 @@ const GallerySection = () => {
               slidesPerView="auto"
               loop={true}
              onSwiper={(swiperInstance) => {
-  swiperRef.current = swiperInstance;
-}}
+              swiperRef.current = swiperInstance;
+            }}
 
               coverflowEffect={{
                 rotate: 20,
@@ -165,14 +165,14 @@ const GallerySection = () => {
                       }}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 sm:p-6">
-                      <h3 className="text-yellow-400 font-semibold text-lg sm:text-xl mb-1">
+                      <h3 className="text-gray-400 font-semibold text-lg sm:text-xl mb-1">
                         {image.title}
                       </h3>
                       <p className="text-white/80 text-xs sm:text-sm">
                         {image.description}
                       </p>
                       {image.category && (
-                        <span className="inline-block bg-yellow-500 text-black text-xs px-2 py-1 rounded-full mt-1">
+                        <span className="inline-block bg-gray-500 text-black text-xs px-2 py-1 rounded-full mt-1">
                           {image.category}
                         </span>
                       )}
@@ -184,7 +184,7 @@ const GallerySection = () => {
 
             {/* Navigation Buttons */}
             <button
-              className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 bg-yellow-500 hover:bg-yellow-600 shadow-lg rounded-full p-2 ml-2 sm:ml-4 transition-colors"
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 bg-gray-500 hover:bg-gray-600 shadow-lg rounded-full p-2 ml-2 sm:ml-4 transition-colors"
               onClick={() => swiperRef.current?.slidePrev()}
               aria-label="Previous Slide"
             >
@@ -204,7 +204,7 @@ const GallerySection = () => {
             </button>
 
             <button
-              className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 bg-yellow-500 hover:bg-yellow-600 shadow-lg rounded-full p-2 mr-2 sm:mr-4 transition-colors"
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 bg-gray-500 hover:bg-gray-600 shadow-lg rounded-full p-2 mr-2 sm:mr-4 transition-colors"
               onClick={() => swiperRef.current?.slideNext()}
               aria-label="Next Slide"
             >
@@ -246,21 +246,21 @@ const GallerySection = () => {
               className="w-full h-auto max-h-[90vh] object-contain"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
-              <h3 className="text-yellow-400 font-semibold text-xl mb-2">
+              <h3 className="text-gray-400 font-semibold text-xl mb-2">
                 {activeImage.title}
               </h3>
               <p className="text-white/90 text-sm mb-2">
                 {activeImage.description}
               </p>
               {activeImage.category && (
-                <span className="inline-block bg-yellow-500 text-black text-xs px-2 py-1 rounded-full">
+                <span className="inline-block bg-gray-500 text-black text-xs px-2 py-1 rounded-full">
                   {activeImage.category}
                 </span>
               )}
             </div>
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-3 right-3 bg-yellow-500 hover:bg-yellow-600 rounded-full shadow p-2 transition-colors"
+              className="absolute top-3 right-3 bg-gray-500 hover:bg-gray-600 rounded-full shadow p-2 transition-colors"
             >
               <svg
                 className="w-6 h-6 text-black"

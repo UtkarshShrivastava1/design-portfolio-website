@@ -49,14 +49,14 @@ const VideoGallery = () => {
 
       {/* Header */}
       <div className="relative overflow-hidden h-1/3">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-yellow-600/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-400/10 to-gray-600/5"></div>
         <div className="relative px-6 py-8 sm:px-12 h-full flex items-center">
           <div className="max-w-7xl mx-auto w-full">
             <div className="text-center">
-              <h1 className="text-4xl sm:text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-6xl font-black mb-4 bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
                 VIDEO GALLERY
               </h1>
-              <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-4"></div>
+              <div className="w-32 h-1 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto mb-4"></div>
               <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
                 Explore my design process through video case studies and project walkthroughs
               </p>
@@ -72,7 +72,7 @@ const VideoGallery = () => {
             {videos.map((video) => (
               <div
                 key={video.id}
-                className={`group relative overflow-hidden rounded-2xl bg-gray-900 mb-10 border border-gray-800 hover:border-yellow-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-400/20 ${
+                className={`group relative overflow-hidden rounded-2xl bg-gray-900 mb-10 border border-gray-800 hover:border-gray-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-400/20 ${
                   video.type === 'portrait' 
                     ? 'h-full' 
                     : 'h-full'
@@ -89,13 +89,13 @@ const VideoGallery = () => {
 />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute inset-0 bg-yellow-400/0 group-hover:bg-yellow-400/10 transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
                 </div>
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center transform transition-all duration-500 ${
-                    hoveredVideo === video.id ? 'scale-110 shadow-2xl shadow-yellow-400/50' : 'scale-100'
+                  <div className={`w-16 h-16 rounded-full bg-white flex items-center justify-center transform transition-all duration-500 ${
+                    hoveredVideo === video.id ? 'scale-110 shadow-2xl shadow-gray-400/50' : 'scale-100'
                   }`}>
                     <Play className="w-6 h-6 text-black ml-1" fill="currentColor" />
                   </div>
@@ -114,12 +114,12 @@ const VideoGallery = () => {
                         <span>{video.views}</span>
                       </div>
                     </div>
-                    <button className="p-1.5 rounded-full bg-black/50 hover:bg-yellow-400/20 transition-colors">
+                    <button className="p-1.5 rounded-full bg-black/50 hover:bg-white/20 transition-colors">
                       <Maximize2 className="w-3 h-3" />
                     </button>
                   </div>
                   
-                  <h3 className="text-lg font-bold mb-1 text-white group-hover:text-yellow-400 transition-colors">
+                  <h3 className="text-lg font-bold mb-1 text-white group-hover:text-gray-400 transition-colors">
                     {video.title}
                   </h3>
                   <p className="text-gray-300 text-xs leading-relaxed">
@@ -128,7 +128,7 @@ const VideoGallery = () => {
                 </div>
 
                 {/* Hover Effect Border */}
-                <div className={`absolute inset-0 border-2 border-yellow-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
+                <div className={`absolute inset-0 border-2 border-gray-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
               </div>
             ))}
           </div>
@@ -137,8 +137,8 @@ const VideoGallery = () => {
 
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-yellow-400/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-yellow-600/3 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-gray-600/3 rounded-full blur-3xl"></div>
       </div>
     </div>
   );

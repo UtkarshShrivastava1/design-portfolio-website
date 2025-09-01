@@ -66,6 +66,8 @@ export async function GET() {
     await connectToDatabse();
 
     const testimonials = await Testimonial.find();
+     
+    // console.log("Fetched testimonials:", testimonials);
 
     return NextResponse.json({ testimonials }, { status: 200 });
   } catch (error) {

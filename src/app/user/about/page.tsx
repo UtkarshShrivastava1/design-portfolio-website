@@ -14,11 +14,11 @@ const AboutSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const skills = [
-    { name: "Photoshop", icon: <Palette className="w-6 h-6" />, level: 95, color: "from-blue-500 to-purple-600" },
+    { name: "Photoshop", icon: <Palette className="w-6 h-6" />, level: 95, color: "from-gray-500 to-gray-600" },
     { name: "Illustrator", icon: <Sparkles className="w-6 h-6" />, level: 90, color: "from-orange-500 to-red-600" },
     { name: "Figma", icon: <Layers className="w-6 h-6" />, level: 92, color: "from-green-500 to-teal-600" },
     { name: "After Effects", icon: <Zap className="w-6 h-6" />, level: 85, color: "from-purple-500 to-pink-600" },
-    { name: "Cinema 4D", icon: <Monitor className="w-6 h-6" />, level: 78, color: "from-yellow-500 to-orange-600" },
+    { name: "Cinema 4D", icon: <Monitor className="w-6 h-6" />, level: 78, color: "from-gray-500 to-orange-600" },
     { name: "Photography", icon: <Camera className="w-6 h-6" />, level: 88, color: "from-indigo-500 to-blue-600" }
   ];
 
@@ -108,7 +108,7 @@ const AboutSection = () => {
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute w-1 h-1 bg-yellow-400 rounded-full opacity-20"
+            className="absolute w-1 h-1 bg-white rounded-full opacity-20"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -130,7 +130,7 @@ const AboutSection = () => {
 
         {/* Mouse follower */}
         <motion.div
-          className="absolute w-96 h-96 bg-yellow-400 rounded-full opacity-5 pointer-events-none blur-3xl"
+          className="absolute w-96 h-96 bg-white rounded-full opacity-5 pointer-events-none blur-3xl"
           animate={{
             x: mousePosition.x - 192,
             y: mousePosition.y - 192,
@@ -160,11 +160,11 @@ const AboutSection = () => {
                   className="absolute -inset-6 rounded-3xl opacity-60"
                   animate={{
                     background: [
-                      "linear-gradient(45deg, rgba(255,255,0,0.3), rgba(255,255,0,0.1), rgba(255,255,0,0.3))",
-                      "linear-gradient(135deg, rgba(255,255,0,0.1), rgba(255,255,0,0.3), rgba(255,255,0,0.1))",
-                      "linear-gradient(225deg, rgba(255,255,0,0.3), rgba(255,255,0,0.1), rgba(255,255,0,0.3))",
-                      "linear-gradient(315deg, rgba(255,255,0,0.1), rgba(255,255,0,0.3), rgba(255,255,0,0.1))"
-                    ]
+                          "linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3))",
+                          "linear-gradient(135deg, rgba(128, 128, 128, 0.1), rgba(128, 128, 128, 0.3), rgba(128, 128, 128, 0.1))",
+                          "linear-gradient(225deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3))",
+                          "linear-gradient(315deg, rgba(128, 128, 128, 0.1), rgba(128, 128, 128, 0.3), rgba(128, 128, 128, 0.1))"
+                        ]
                   }}
                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 />
@@ -182,7 +182,7 @@ const AboutSection = () => {
                 >
                   {/* Profile image with 3D effect */}
                   <motion.div 
-                    className="relative w-full aspect-square bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl"
+                    className="relative w-full aspect-square bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl"
                     whileHover={{ scale: 1.05 }}
                   >
                     <motion.div 
@@ -234,7 +234,7 @@ const AboutSection = () => {
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg"
+                    className="absolute w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg"
                     style={{
                       top: "50%",
                       left: "50%",
@@ -286,7 +286,7 @@ const AboutSection = () => {
                     Aniruddh
                   </motion.span>{" "}
                   <motion.span 
-                    className="text-yellow-400 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text hover:text-transparent"
+                    className="text-gray-400 inline-block bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text hover:text-transparent"
                     animate={{
                       backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                     }}
@@ -301,7 +301,7 @@ const AboutSection = () => {
                   className="flex items-center space-x-6"
                 >
                   <motion.div 
-                    className="h-1 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"
+                    className="h-1 bg-gradient-to-r from-gray-400 to-transparent rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: "120px" }}
                     transition={{ delay: 1, duration: 1 }}
@@ -326,7 +326,7 @@ const AboutSection = () => {
     animate={{ opacity: 1 }}
     transition={{ delay: 0.5 }}
   >
-    From <span className="text-yellow-400 font-semibold">Raipur, Chhattisgarh</span>. Young enthusiastic guy building my creative dream. <span className="text-yellow-300 font-semibold">Mad multitasker</span> with super pressure handling skills. Sometimes I forget to sleep due to work. <span className="text-yellow-400 font-semibold">GOAT</span> at finding creative solutions to hardcore problems. Have anger issues but kind from inside. Turn my headache into a brainstorming session.
+    From <span className="text-gray-400 font-semibold">Raipur, Chhattisgarh</span>. Young enthusiastic guy building my creative dream. <span className="text-gray-300 font-semibold">Mad multitasker</span> with super pressure handling skills. Sometimes I forget to sleep due to work. <span className="text-gray-400 font-semibold">GOAT</span> at finding creative solutions to hardcore problems. Have anger issues but kind from inside. Turn my headache into a brainstorming session.
   </motion.p>
 
   <motion.p 
@@ -348,12 +348,12 @@ const AboutSection = () => {
              {/* Revolutionary Skills Section */}
               <motion.div variants={itemVariants} className="space-y-8">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-3xl font-bold text-yellow-400">
+                  <h3 className="text-3xl font-bold text-gray-400">
                     Expertise Arsenal
                   </h3>
                   <motion.button
                     onClick={() => setIsPlaying(!isPlaying)}
-                    className="text-yellow-400 hover:text-yellow-300 transition-colors"
+                    className="text-gray-400 hover:text-gray-300 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -367,7 +367,7 @@ const AboutSection = () => {
                       key={skill.name}
                       className={`relative p-6 rounded-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden ${
                         activeSkill === index 
-                          ? "border-yellow-400 bg-yellow-400/10 scale-105" 
+                          ? "border-gray-400 bg-white/10 scale-105" 
                           : "border-gray-700 bg-gray-900/50 hover:border-gray-600"
                       }`}
                       onClick={() => {
@@ -389,7 +389,7 @@ const AboutSection = () => {
                       <div className="relative z-10">
                         <div className="flex items-center space-x-3 mb-3">
                           <motion.div 
-                            className={`p-2 rounded-lg ${activeSkill === index ? "bg-yellow-400 text-black" : "bg-gray-800 text-yellow-400"}`}
+                            className={`p-2 rounded-lg ${activeSkill === index ? "bg-white text-black" : "bg-gray-800 text-gray-400"}`}
                             animate={{ rotate: activeSkill === index ? 360 : 0 }}
                             transition={{ duration: 0.5 }}
                           >
@@ -427,7 +427,7 @@ const AboutSection = () => {
               {/* Epic CTA */}
               <motion.div variants={itemVariants} className="pt-8">
                 <motion.button
-                  className="group relative px-12 py-6 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold text-xl rounded-full overflow-hidden shadow-2xl"
+                  className="group relative px-12 py-6 bg-gradient-to-r from-gray-400 to-gray-500 text-black font-bold text-xl rounded-full overflow-hidden shadow-2xl"
                   whileHover={{ 
                     scale: 1.05,
                     boxShadow: "0 20px 40px rgba(255, 255, 0, 0.3)"
@@ -435,7 +435,7 @@ const AboutSection = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400"
+                    className="absolute inset-0 bg-gradient-to-r from-gray-300 to-gray-400"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "0%" }}
                     transition={{ duration: 0.3 }}

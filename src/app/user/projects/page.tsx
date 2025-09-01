@@ -16,7 +16,7 @@ const ProjectsSection = () => {
       title: "NeuroSync App",
       category: "UI/UX Design",
       description: "Revolutionary brain-computer interface application that reads neural patterns to enhance productivity and focus.",
-      image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      image: "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["Mobile", "AI", "Healthcare"],
       status: "Featured",
       likes: 2847,
@@ -25,7 +25,7 @@ const ProjectsSection = () => {
       client: "MindTech Labs",
       duration: "6 months",
       tools: ["Figma", "Principle", "After Effects"],
-      color: "from-purple-500 to-blue-600",
+      color: "from-gray-500 to-gray-600",
       icon: <Monitor className="w-6 h-6" />
     },
     {
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
       title: "Quantum Commerce",
       category: "E-commerce",
       description: "Next-gen shopping platform using quantum computing algorithms for personalized product recommendations.",
-      image: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      image: "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["Web", "E-commerce", "AI"],
       status: "Award Winner",
       likes: 4521,
@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       client: "RetailVerse",
       duration: "8 months",
       tools: ["Figma", "Framer", "Cinema 4D"],
-      color: "from-pink-500 to-red-600",
+      color:"from-gray-500 to-gray-500",
       icon: <Globe className="w-6 h-6" />
     },
     {
@@ -50,7 +50,7 @@ const ProjectsSection = () => {
       title: "Hologram Banking",
       category: "Fintech",
       description: "Immersive holographic banking interface that revolutionizes how people interact with their finances.",
-      image: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      image:  "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["AR/VR", "Fintech", "3D"],
       status: "Innovation",
       likes: 3672,
@@ -59,7 +59,7 @@ const ProjectsSection = () => {
       client: "FutureBank",
       duration: "10 months",
       tools: ["Blender", "Unity", "Figma"],
-      color: "from-cyan-500 to-teal-600",
+      color: "from-gray-500 to-gray-500",
       icon: <Layers className="w-6 h-6" />
     },
     {
@@ -67,7 +67,7 @@ const ProjectsSection = () => {
       title: "AI Portrait Studio",
       category: "Creative Tools",
       description: "Artificial intelligence-powered portrait generation tool that creates photorealistic avatars from text descriptions.",
-      image: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+      image:  "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["AI", "Photography", "Creative"],
       status: "Trending",
       likes: 5234,
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
       client: "CreativeAI Inc",
       duration: "4 months",
       tools: ["Midjourney", "Photoshop", "Figma"],
-      color: "from-orange-500 to-yellow-600",
+      color: "from-gray-500 to-gray-500",
       icon: <Camera className="w-6 h-6" />
     },
     {
@@ -84,7 +84,7 @@ const ProjectsSection = () => {
       title: "MetaSpace Social",
       category: "Social Platform",
       description: "Virtual reality social platform where users create and explore infinite digital worlds together.",
-      image: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      image:  "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["VR", "Social", "Gaming"],
       status: "Beta",
       likes: 1892,
@@ -93,7 +93,7 @@ const ProjectsSection = () => {
       client: "MetaCorp",
       duration: "12 months",
       tools: ["Unreal Engine", "Blender", "Figma"],
-      color: "from-pink-500 to-yellow-500",
+      color: "from-gray-500 to-gray-500",
       icon: <Smartphone className="w-6 h-6" />
     },
     {
@@ -101,7 +101,7 @@ const ProjectsSection = () => {
       title: "EcoSphere Dashboard",
       category: "Data Visualization",
       description: "Real-time environmental monitoring dashboard that tracks global climate data with stunning 3D visualizations.",
-      image: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)",
+      image: "linear-gradient(135deg, white 0%, gray 50%, black 100%)",
       tags: ["Data Viz", "Environment", "3D"],
       status: "Live",
       likes: 2156,
@@ -110,7 +110,7 @@ const ProjectsSection = () => {
       client: "GreenTech Solutions",
       duration: "5 months",
       tools: ["D3.js", "Three.js", "Figma"],
-      color: "from-green-500 to-blue-500",
+      color: "from-gray-500 to-gray-500",
       icon: <Globe className="w-6 h-6" />
     }
   ];
@@ -153,7 +153,7 @@ const ProjectsSection = () => {
 
   const getStatusColor = (status: string) => {
     switch(status) {
-      case 'Featured': return 'bg-yellow-400 text-black';
+      case 'Featured': return 'bg-white text-black';
       case 'Award Winner': return 'bg-red-500 text-white';
       case 'Innovation': return 'bg-purple-500 text-white';
       case 'Trending': return 'bg-green-500 text-white';
@@ -173,11 +173,12 @@ const ProjectsSection = () => {
         <motion.div 
           className="absolute inset-0"
           animate={{
-            background: [
-              "radial-gradient(circle at 25% 25%, rgba(255, 255, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 255, 0, 0.05) 0%, transparent 50%)",
-              "radial-gradient(circle at 75% 25%, rgba(255, 255, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(255, 255, 0, 0.05) 0%, transparent 50%)",
-              "radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 0, 0.05) 0%, transparent 50%)"
-            ]
+           background: [
+                "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(128, 128, 128, 0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(128, 128, 128, 0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(128, 128, 128, 0.05) 0%, transparent 50%)",
+              ]
+
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
@@ -203,7 +204,7 @@ const ProjectsSection = () => {
               delay: Math.random() * 2
             }}
           >
-            <div className={`w-8 h-8 ${i % 3 === 0 ? 'bg-yellow-400' : i % 3 === 1 ? 'border-2 border-yellow-400' : 'bg-gradient-to-r from-yellow-400 to-transparent'} ${i % 4 === 0 ? 'rounded-full' : i % 4 === 1 ? 'rounded-none rotate-45' : 'rounded-lg'}`} />
+            <div className={`w-8 h-8 ${i % 3 === 0 ? 'bg-white' : i % 3 === 1 ? 'border-2 border-white' : 'bg-gradient-to-r from-white to-transparent'} ${i % 4 === 0 ? 'rounded-full' : i % 4 === 1 ? 'rounded-none rotate-45' : 'rounded-lg'}`} />
           </motion.div>
         ))}
       </div>
@@ -221,14 +222,14 @@ const ProjectsSection = () => {
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
-              className="w-12 h-0.5 bg-yellow-400"
+              className="w-12 h-0.5 bg-white"
               initial={{ width: 0 }}
               animate={isInView ? { width: "48px" } : {}}
               transition={{ delay: 0.5, duration: 1 }}
             />
-            <span className="text-yellow-400 text-xl font-semibold tracking-wider">PORTFOLIO</span>
+            <span className="text-gray-400 text-xl font-semibold tracking-wider">PORTFOLIO</span>
             <motion.div
-              className="w-12 h-0.5 bg-yellow-400"
+              className="w-12 h-0.5 bg-white"
               initial={{ width: 0 }}
               animate={isInView ? { width: "48px" } : {}}
               transition={{ delay: 0.5, duration: 1 }}
@@ -243,7 +244,7 @@ const ProjectsSection = () => {
           >
             Featured {" "}
             <motion.span 
-              className="text-yellow-400 inline-block"
+              className="text-gray-400 inline-block"
               animate={{
                 rotateY: [0, 360],
                 scale: [1, 1.1, 1]
@@ -265,7 +266,7 @@ const ProjectsSection = () => {
           >
             Pushing the boundaries of digital design through{" "}
             <motion.span 
-              className="text-yellow-400 font-semibold"
+              className="text-gray-400 font-semibold"
               whileHover={{ scale: 1.05 }}
             >
               innovation, creativity, and cutting-edge technology
@@ -286,7 +287,7 @@ const ProjectsSection = () => {
               onClick={() => setActiveFilter(filter)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 relative overflow-hidden ${
                 activeFilter === filter
-                  ? 'bg-yellow-400 text-black shadow-2xl'
+                  ? 'bg-white text-black shadow-2xl'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-600'
               }`}
               whileHover={{ scale: 1.05 }}
@@ -296,7 +297,7 @@ const ProjectsSection = () => {
               transition={{ delay: 0.9 + index * 0.1 }}
             >
               <motion.div
-                className="absolute inset-0 bg-yellow-400"
+                className="absolute inset-0 bg-white"
                 initial={{ x: "-100%" }}
                 animate={{ x: activeFilter === filter ? "0%" : "-100%" }}
                 transition={{ duration: 0.3 }}
@@ -398,7 +399,7 @@ const ProjectsSection = () => {
                               {project.tools.map((tool, i) => (
                                 <motion.span
                                   key={tool}
-                                  className="bg-yellow-400 text-black px-2 py-1 rounded-md text-xs font-semibold"
+                                  className="bg-white text-black px-2 py-1 rounded-md text-xs font-semibold"
                                   initial={{ scale: 0, rotate: -180 }}
                                   animate={{ scale: 1, rotate: 0 }}
                                   transition={{ delay: i * 0.1 }}
@@ -414,7 +415,7 @@ const ProjectsSection = () => {
 
                     {/* Category Icon */}
                     <motion.div
-                      className="absolute bottom-4 left-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-black"
+                      className="absolute bottom-4 left-4 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black"
                       animate={{
                         rotate: hoveredProject === project.id ? 360 : 0,
                         scale: hoveredProject === project.id ? 1.1 : 1
@@ -430,7 +431,7 @@ const ProjectsSection = () => {
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <motion.h3 
-                          className="text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300"
+                          className="text-2xl font-bold text-white group-hover:text-gray-400 transition-colors duration-300"
                           animate={{
                             x: hoveredProject === project.id ? 5 : 0
                           }}
@@ -440,7 +441,7 @@ const ProjectsSection = () => {
                         <span className="text-sm text-gray-400 font-semibold">{project.year}</span>
                       </div>
                       
-                      <p className="text-yellow-400 font-semibold text-sm tracking-wider uppercase">
+                      <p className="text-gray-400 font-semibold text-sm tracking-wider uppercase">
                         {project.category}
                       </p>
                     </div>
@@ -479,12 +480,12 @@ const ProjectsSection = () => {
                       }}
                     >
                       <div>
-                        <span className="text-yellow-400 font-semibold">Client:</span>
+                        <span className="text-gray-400 font-semibold">Client:</span>
                         <br />
                         {project.client}
                       </div>
                       <div>
-                        <span className="text-yellow-400 font-semibold">Duration:</span>
+                        <span className="text-gray-400 font-semibold">Duration:</span>
                         <br />
                         {project.duration}
                       </div>
@@ -492,7 +493,7 @@ const ProjectsSection = () => {
 
                     {/* CTA Button */}
                     <motion.button
-                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold py-4 rounded-2xl flex items-center justify-center space-x-3 group-hover:shadow-2xl transition-all duration-300 overflow-hidden relative"
+                      className="w-full bg-gradient-to-r from-gray-400 to-gray-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-3 group-hover:shadow-2xl transition-all duration-300 overflow-hidden relative"
                       whileHover={{ 
                         scale: 1.02,
                         boxShadow: "0 10px 30px rgba(255, 255, 0, 0.3)"
@@ -500,7 +501,7 @@ const ProjectsSection = () => {
                       whileTap={{ scale: 0.98 }}
                     >
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400"
+                        className="absolute inset-0 bg-gradient-to-r from-gray-300 to-gray-400"
                         initial={{ x: "-100%" }}
                         whileHover={{ x: "0%" }}
                         transition={{ duration: 0.3 }}
@@ -540,7 +541,7 @@ const ProjectsSection = () => {
           transition={{ delay: 1.5, duration: 1 }}
         >
           <motion.button
-            className="group relative px-12 py-6 bg-transparent border-2 border-yellow-400 text-yellow-400 font-bold text-xl rounded-full overflow-hidden"
+            className="group relative px-12 py-6 bg-transparent border-2 border-white text-gray-400 font-bold text-xl rounded-full overflow-hidden"
             whileHover={{ 
               scale: 1.05,
               backgroundColor: "rgba(255, 255, 0, 0.1)"
@@ -548,13 +549,13 @@ const ProjectsSection = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="absolute inset-0 bg-yellow-400"
+              className="absolute inset-0 bg-white"
               initial={{ scale: 0 }}
               whileHover={{ scale: 1 }}
               transition={{ duration: 0.3 }}
             />
             
-            <span className="relative z-10 flex items-center space-x-3 group-hover:text-black transition-colors duration-300">
+            <span className="relative z-10 flex items-center space-x-3 group-hover:text-white transition-colors duration-300">
               <span>Explore Full Portfolio</span>
               <motion.div
                 animate={{ rotate: [0, 360] }}
@@ -566,7 +567,7 @@ const ProjectsSection = () => {
           </motion.button>
 
           <motion.p
-            className="text-gray-400 mt-6 text-lg"
+            className="text-white mt-6 text-lg"
             animate={{
               opacity: [0.5, 1, 0.5]
             }}

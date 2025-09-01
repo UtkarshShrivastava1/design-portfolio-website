@@ -96,32 +96,44 @@ const BlogForm = () => {
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden mr-2 sm:mr-4 text-yellow-400 hover:text-yellow-300 transition-colors p-1"
+              className="lg:hidden mr-2 sm:mr-4 text-gray-400 hover:text-gray-300 transition-colors p-1"
             >
               <Menu size={20} className="sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-400">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
               Dashboard
             </h1>
           </div>
-          <div className="text-yellow-300 text-xs sm:text-sm">
+          <div className="text-gray-300 text-xs sm:text-sm">
             <span className="hidden sm:inline"></span>Admin
           </div>
         </header>
 
         {/* Dashboard Content */}
         <main className="flex-1 p-3 sm:p-4 md:p-6 overflow-auto bg-black">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             {/* Upload Form */}
-            <div className="bg-black border border-yellow-400 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl w-full sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-6">
-                <Upload
-                  className="text-yellow-400 mr-0 sm:mr-3 mb-2 sm:mb-0"
-                  size={28}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-yellow-400">
-                  Upload A Blog
-                </h2>
+            <div className="bg-black border border-gray-400 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl w-full sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto">
+             <div className="flex items-center mb-3 sm:mb-0 justify-between gap-6 sm:gap-10">
+                <div className="flex items-center">
+                  <Upload
+                    className="text-gray-400 mr-0 sm:mr-3 mb-2 sm:mb-0"
+                    size={36} // Increased icon size
+                  />
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-400">
+                    Upload A Blog
+                  </h2>
+                </div>
+                <div>
+                  <button className="text-base sm:text-lg px-5 py-3 rounded-md">
+                    <a
+                      className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-base font-medium text-black hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+                      href="/admin/blog/viewBlogs"
+                    >
+                      View Blog
+                    </a>
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-4 sm:space-y-6">
@@ -129,7 +141,7 @@ const BlogForm = () => {
                 <div>
                   <label
                     htmlFor="title"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Title *
                   </label>
@@ -140,7 +152,7 @@ const BlogForm = () => {
                     value={formData.title}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                     placeholder="Enter blog title"
                   />
                 </div>
@@ -149,7 +161,7 @@ const BlogForm = () => {
                 <div>
                   <label
                     htmlFor="catogery"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Category *
                   </label>
@@ -160,7 +172,7 @@ const BlogForm = () => {
                     value={formData.catogery}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                     placeholder="Enter Category"
                   />
                 </div>
@@ -169,7 +181,7 @@ const BlogForm = () => {
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Content *
                   </label>
@@ -180,7 +192,7 @@ const BlogForm = () => {
                     onChange={handleInputChange}
                     required
                     rows={4}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                     placeholder="Enter Content"
                   />
                 </div>
@@ -189,7 +201,7 @@ const BlogForm = () => {
                 <div>
                   <label
                     htmlFor="file-input"
-                    className="block text-yellow-300 text-sm font-medium mb-2"
+                    className="block text-gray-300 text-sm font-medium mb-2"
                   >
                     Upload Image *
                   </label>
@@ -200,11 +212,11 @@ const BlogForm = () => {
                       onChange={handleFileChange}
                       accept="image/*"
                       required
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-yellow-400 rounded-lg text-yellow-100 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-lg file:border-0 file:bg-yellow-400 file:text-black file:font-medium file:text-xs sm:file:text-sm hover:file:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-400 rounded-lg text-gray-100 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-lg file:border-0 file:bg-white file:text-black file:font-medium file:text-xs sm:file:text-sm hover:file:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                     />
                   </div>
                   {formData.file && (
-                    <p className="mt-2 text-xs sm:text-sm text-yellow-300 break-all">
+                    <p className="mt-2 text-xs sm:text-sm text-gray-300 break-all">
                       Selected: {formData.file.name}
                     </p>
                   )}
@@ -218,8 +230,8 @@ const BlogForm = () => {
                     disabled={isSubmitting}
                     className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium text-black transition-all duration-200 transform hover:scale-105 text-sm sm:text-base ${
                       isSubmitting
-                        ? "bg-yellow-600 cursor-not-allowed"
-                        : "bg-yellow-400 hover:bg-yellow-300 hover:shadow-lg"
+                        ? "bg-gray-600 cursor-not-allowed"
+                        : "bg-white hover:bg-gray-300 hover:shadow-lg"
                     }`}
                   >
                     {isSubmitting ? (
