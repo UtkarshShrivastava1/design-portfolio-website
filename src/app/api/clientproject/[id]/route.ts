@@ -6,10 +6,10 @@ import cloudinary from "@/app/lib/config"; // Adjust this import as needed
 // DELETE /api/clientproject/[id]
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+ { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
 
   try {
     const deleted = await ClientProject.findByIdAndDelete(id);
@@ -27,10 +27,10 @@ export async function DELETE(
 // PUT /api/clientproject/[id]
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+{ params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
 
   try {
     const formData = await req.formData();

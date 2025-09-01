@@ -5,10 +5,10 @@ import Testimonial from "@/app/models/testimonialModel";
 // Update testimonial (PATCH)
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+ { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
   const body = await req.json();
 
   try {
@@ -29,10 +29,10 @@ export async function PATCH(
 // Delete testimonial (DELETE)
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
 
   try {
     const deleted = await Testimonial.findByIdAndDelete(id);

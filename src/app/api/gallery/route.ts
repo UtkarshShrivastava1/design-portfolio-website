@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       const buffer = Buffer.from(await file.arrayBuffer());
       const base64 = buffer.toString("base64");
       const dataUri = `data:${file.type};base64,${base64}`;
-      const result = await cloudinary.uploader.upload(dataUri, {
+      const result = await cloudinary.cloudinary.uploader.upload(dataUri, {
         folder: "gallery",
         resource_type: "auto",
       });

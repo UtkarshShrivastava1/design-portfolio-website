@@ -6,10 +6,10 @@ import cloudinary from "@/app/lib/config";
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+ { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
 
   try {
     const formData = await req.formData();
@@ -50,10 +50,10 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabse();
-  const { id } = params;
+  const id = (await params).id;
 
   try {
     const deleted = await Gallery.findByIdAndDelete(id);

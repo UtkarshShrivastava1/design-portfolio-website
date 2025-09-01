@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
       // Upload image to Cloudinary
       const uploadResult = await new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
+        const uploadStream = cloudinary.cloudinary.uploader.upload_stream(
           {
             folder: "client_projects",
             public_id: uuidv4(),
