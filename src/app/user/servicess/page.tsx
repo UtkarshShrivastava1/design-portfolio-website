@@ -206,11 +206,14 @@ const ServicesSection: React.FC = () => {
         }`}>
           <div className="relative inline-block">
             <button className="group relative overflow-hidden bg-gradient-to-r from-gray-400 to-gray-500 text-black px-12 py-6 font-bold text-lg transition-all duration-500 hover:shadow-2xl hover:shadow-gray-400/25 transform hover:scale-105">
-              <span className="relative z-10 flex items-center gap-3">
+            <a href='https://www.instagram.com/01prinz?igsh=MWwydWN6anRkOXIzMw=='>
+                <span className="relative z-10 flex items-center gap-3">
                 <Zap className="w-6 h-6" />
                 Let&lsquo;s Create Magic Together
                 <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" />
               </span>
+            </a>
+              
               
               {/* Button Animation Effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -261,13 +264,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, isVisible }) 
         <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl transition-all duration-500 relative ${
           isHovered 
             ? `bg-gradient-to-br ${service.gradient} text-black transform rotate-6 scale-110 shadow-2xl shadow-gray-400/30` 
-            : 'bg-gradient-to-br from-gray-800 to-gray-900 text-gray-400 border border-gray-700'
+            : 'bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-gray-700'
         }`}>
           {service.icon}
           
           {/* Icon Glow Effect */}
           {isHovered && (
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-400/30 to-gray-500/30 blur-lg -z-10"></div>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white to-gray-500/30 blur-lg -z-10"></div>
           )}
         </div>
         

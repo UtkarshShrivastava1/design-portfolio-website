@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Design Portfolio",
+  title: "Sochlabs.in",
   description: "Admin + User App",
 };
 

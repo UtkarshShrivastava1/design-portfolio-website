@@ -57,19 +57,19 @@ const Navbar = () => {
                 alt="Logo"
                 width={60}
                 height={60}
-                className="rounded-full"
+                className="rounded-full w-10 h-10 lg:w-16 lg:h-16 sm:w-12 sm:h-12 object-cover"
               />
-              <span className="ml-5 text-2xl lg:text-4xl sm:text-lg font-semibold dark:text-gray-400">
+              <span className="ml-2 text-xs md:text-4xl lg:text-4xl sm:text-lg font-semibold dark:text-gray-400">
                Sochlabs.in
               </span>
             </Link>
 
             {/* Centered Company Name */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
+            {/* <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
               <h1 className="text-white text-2xl font-light tracking-wider whitespace-nowrap">
-                {/* <span className="font-bold text-white">Your</span>Company */}
+                {/* <span className="font-bold text-white">Your</span>Company 
               </h1>
-            </div>
+            </div> */}
 
             {/* Schedule Call Button */}
             <div className="flex items-center space-x-4">
@@ -92,8 +92,8 @@ const Navbar = () => {
                       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
-                  <span className="sm:hidden">Call</span>
-                  <span className="hidden sm:inline">Schedule a Call</span>
+                  <span className=" sm:inline md:hidden lg:hidden ">Call</span>
+                  <span className="lg:inline md:inline hidden">Schedule A Call</span>
                 </span>
                 <div className="absolute inset-0 bg-gray-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </a>

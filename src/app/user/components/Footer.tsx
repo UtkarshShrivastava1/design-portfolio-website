@@ -15,10 +15,10 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/user/about"
                   className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
-                  Work with us
+                  About us
                 </a>
               </li>
               <li>
@@ -26,20 +26,13 @@ const Footer: React.FC = () => {
                   href="#"
                   className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
-                  Brand Assets
+                  Brand Broucher
                 </a>
               </li>
+             
               <li>
                 <a
-                  href="#"
-                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
-                >
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="/user/contact"
                   className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
                   Get in Touch
@@ -49,7 +42,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Products Section */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="text-gray-400 font-semibold text-lg mb-4">
               Products
             </h3>
@@ -87,7 +80,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Social Section */}
           <div className="space-y-4">
@@ -97,42 +90,10 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/01prinz?igsh=MWwydWN6anRkOXIzMw=="
                   className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
                 >
-                  Discord
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
-                >
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
-                >
-                  Mirror
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
-                >
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-gray-400 transition-colors duration-200 text-sm"
-                >
-                  Telegram
+                 Instagram
                 </a>
               </li>
             </ul>
@@ -144,17 +105,23 @@ const Footer: React.FC = () => {
                 DESIGNER
             </div>
           </div> */}
-        <div className="absolute left-[50%] translate-x-[-50%] bottom-[12%]">
-          <div className="relative">
-            {/* Text */}
-            <div className="text-6xl sm:text-7xl lg:text-9xl font-bold text-gray-800 select-none tracking-wider">
-              SOCH LABS
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-[8%] sm:bottom-[10%] md:bottom-[12%] text-center w-full px-2">
+              <div className="relative">
+                {/* Responsive Text */}
+                <div
+                 className="font-bold text-gray-800 select-none tracking-wider whitespace-nowrap
+             text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-8xl
+             mb-4 sm:mb-6 md:mb-8 lg:mb-10"
+                >
+                  <h2>SOCH LABS</h2>
+                </div>
+
+                {/* Foreground gradient overlay */}
+                <div className="absolute bottom-0 left-0 w-full h-[40%] sm:h-[50%] md:h-[60%] bg-gradient-to-t from-black to-transparent pointer-events-none" />
+              </div>
             </div>
 
-            {/* Foreground gradient overlay */}
-            <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black to-transparent pointer-events-none" />
-          </div>
-        </div>
+
       </div>
       {/* Bottom Section */}
       <div className="border-t border-gray-800 pt-8 relative z-50 bg-black">

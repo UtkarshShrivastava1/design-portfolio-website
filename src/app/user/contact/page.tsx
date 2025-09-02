@@ -39,28 +39,12 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
-  {
-    name: 'GitHub',
-    icon: <Github className="w-6 h-6" />,
-    url: 'https://github.com/yourusername',
-    color: 'hover:text-gray-300'
-  },
-  {
-    name: 'LinkedIn',
-    icon: <Linkedin className="w-6 h-6" />,
-    url: 'https://linkedin.com/in/yourusername',
-    color: 'hover:text-blue-400'
-  },
-  {
-    name: 'Twitter',
-    icon: <Twitter className="w-6 h-6" />,
-    url: 'https://twitter.com/yourusername',
-    color: 'hover:text-blue-400'
-  },
+
+
   {
     name: 'Instagram',
     icon: <Instagram className="w-6 h-6" />,
-    url: 'https://instagram.com/yourusername',
+    url: 'https://www.instagram.com/01prinz?igsh=MWwydWN6anRkOXIzMw==',
     color: 'hover:text-pink-400'
   }
 ];
@@ -215,8 +199,8 @@ const ContactSection: React.FC = () => {
               <Heart className="w-5 h-5 text-gray-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
             
-            <h2 className="text-6xl md:text-6xl font-black text-white mb-8 relative tracking-tight">
-              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-6xl md:text-6xl font-black text-white mb-8 relative tracking-tight">
+              <span className="bg-gradient-to-r  from-white via-gray-100 to-white bg-clip-text text-transparent">
                 Get In
               </span>
               <br />
@@ -230,7 +214,7 @@ const ContactSection: React.FC = () => {
             </h2>
           </div>
           
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-xs md:text-2xl sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
             Ready to create something 
             <span className="text-gray-400 font-semibold"> extraordinary</span>? 
             Let&apos;s bring your vision to life and make magic happen together.
@@ -247,11 +231,11 @@ const ContactSection: React.FC = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gray-200/5 via-transparent to-gray-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative z-10">
-                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+                <h3 className="text-xl sm:text-base md:text-4xl lg:text-3xl font-bold text-white mb-2 flex items-center gap-3">
                   <Zap className="w-8 h-8 text-gray-400" />
                   Send a Message
                 </h3>
-                <p className="text-gray-400 mb-8">
+                <p className="text-gray-400 text-xl sm:text-base md:text-xl lg:text-base mb-8">
                   Fill out the form below and I&apos;ll get back to you within 24 hours!
                 </p>
 
@@ -409,38 +393,28 @@ const ContactSection: React.FC = () => {
           }`}>
             <div className="space-y-12">
               {/* Direct Contact */}
-              <div className="relative bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm border border-gray-800/30 p-8 rounded-2xl">
-                <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3 mt-4">
+              <div className="relative bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm border border-gray-500/30 p-8 rounded-2xl">
+                <h3 className="text-xl sm:text-base md:text-2xl lg:text-3xl font-bold text-white mb-6 flex items-center gap-3 mt-4 border-gray-200/30">
                   <Mail className="w-8 h-8 text-gray-400" />
                   Direct Contact
                 </h3>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
+                  <div className="flex items-center text-xl gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-300/50 transition-colors duration-300">
                     <Mail className="w-6 h-6 text-gray-400" />
                     <div>
                       <p className="text-gray-400 text-sm">Email</p>
-                      <a href="mailto:hello@yourdesign.com" className="text-white hover:text-gray-400 transition-colors duration-300 font-medium">
-                        hello@yourdesign.com
+                      <a href="mailto:withsoch@gmail.com" className="text-white hover:text-gray-400  transition-colors duration-300 font-bold text-xs">
+                        withsoch@gmail.com
                       </a>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
-                    <Phone className="w-6 h-6 text-gray-400" />
-                    <div>
-                      <p className="text-gray-400 text-sm">Phone</p>
-                      <a href="tel:+1234567890" className="text-white hover:text-gray-400 transition-colors duration-300 font-medium">
-                        +1 (234) 567-8900
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
+                  <div className="flex items-center text-xs gap-4 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors duration-300">
                     <MapPin className="w-6 h-6 text-gray-400" />
                     <div>
                       <p className="text-gray-400 text-sm">Location</p>
-                      <p className="text-white font-medium">New York, NY</p>
+                      <p className="text-white font-medium">Bhilai, Durg</p>
                     </div>
                   </div>
                 </div>
@@ -448,19 +422,19 @@ const ContactSection: React.FC = () => {
 
               {/* Social Media */}
               <div className="relative bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm border border-gray-800/30 p-8 rounded-2xl">
-                <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                <h3 className="text-xl sm:text-base md:text-2xl lg:text-xl font-bold text-white mb-6 flex items-center gap-3">
                   <Sparkles className="w-8 h-8 text-gray-400" />
                   Follow Me
                 </h3>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 text-xs">
                   {socialLinks.map((social) => (
                     <a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group flex items-center gap-3 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-all duration-300 hover:scale-105 hover:shadow-lg ${social.color}`}
+                      className={`group flex items-center gap-3 p-4 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-all duration-300 hover:scale-105 hover:shadow-lg ${social.color} touch-pinch-zoom `}
                     >
                       <div className="relative">
                         {social.icon}
@@ -480,7 +454,7 @@ const ContactSection: React.FC = () => {
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                   <span className="text-green-400 font-bold">Available for Projects</span>
                 </div>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl">
                   Currently accepting new projects for Q2 2025. Let&apos;s create something amazing together!
                 </p>
               </div>

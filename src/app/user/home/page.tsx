@@ -8,87 +8,20 @@ import {
   Brush,
   Monitor,
   Printer,
-  // Filter,
+ 
   Mail,
   InstagramIcon
-  // Star,
-  // ChevronLeft,
-  // Eye,
-  // ExternalLink
+
 } from "lucide-react";
-// import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
-// import Videos from '../components/Videos';
+
 import VideoGallery from "../components/VideoGallery";
 import Testimonials from "../components/Testimonial";
 import MyWork from "../components/Work";
 import GallerySection from "../components/Gallery";
 import Image from "next/image";
-// import Gallery from '../models/galleryModel';;
 
 const Portfolio = () => {
-  // const [activeFilter, setActiveFilter] = useState('All');
-  // const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  //  const words = [
-  //     {
-  //       text: "Bring",
-  //       className: "text-white dark:text-white",
-  //     },
-  //     {
-  //       text: "Ideas",
-  //       className: "text-white dark:text-white",
-  //     },
-  //     {
-  //       text: "to Life",
-  //        className: "text-gray-400 dark:text-gray-400",
-  //     },
 
-  //   ];
-  // Animation variants
-  // const containerVariants = {
-  //   hidden: { opacity: 0 },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       delayChildren: 0.3,
-  //       staggerChildren: 0.2,
-  //     },
-  //   },
-  // };
-
-  // const itemVariants = {
-  //   hidden: { y: 20, opacity: 0 },
-  //   visible: {
-  //     y: 0,
-  //     opacity: 1,
-  //     transition: {
-  //       duration: 0.6,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  // };
-
-  // const floatingVariants = {
-  //   animate: {
-  //     y: [-10, 10, -10],
-  //     rotate: [0, 5, -5, 0],
-  //     transition: {
-  //       duration: 6,
-  //       repeat: Infinity,
-  //       ease: "easeInOut",
-  //     },
-  //   },
-  // };
-
-  // const pulseVariants = {
-  //   animate: {
-  //     scale: [1, 1.05, 1],
-  //     transition: {
-  //       duration: 2,
-  //       repeat: Infinity,
-  //       ease: "easeInOut",
-  //     },
-  //   },
-  // };
 
   const services = [
     {
@@ -153,16 +86,15 @@ const Portfolio = () => {
     <div className="bg-black text-white">
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden bg-black">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 md:shrink-0">
             <Image
               src="/BANNER_IMAGE.png"
               alt="Hero background"
-              layout="fill"
               objectFit="cover"
               objectPosition="center"
-              priority
+              fill={true}
               quality={100}
-              className=""
+              className="md:h-auto md:max-w-auto md:background-image: var(<custom-property>);"
             />
             {/* <div className="absolute inset-0 bg-black bg-opacity-40 pointer-events-none" /> */}
           </div>
@@ -463,7 +395,7 @@ const Portfolio = () => {
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Email</p>
-                    <p className="text-white font-medium">Withsoch@gmail.com</p>
+                    <p className="text-white font-medium">withsoch@gmail.com</p>
                   </div>
                 </motion.div>
 

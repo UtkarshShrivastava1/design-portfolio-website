@@ -13,6 +13,20 @@ const AboutSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
+    const [lineWidth, setLineWidth] = useState("118px"); // default for desktop
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const updateWidth = () => {
+        setLineWidth(window.innerWidth < 640 ? "70px" : "118px");
+      };
+
+      updateWidth(); // set initial
+      window.addEventListener("resize", updateWidth);
+      return () => window.removeEventListener("resize", updateWidth);
+    }
+  }, []);
+
   const skills = [
     { name: "Photoshop", icon: <Palette className="w-6 h-6" />, level: 95, color: "from-gray-500 to-gray-600" },
     { name: "Illustrator", icon: <Sparkles className="w-6 h-6" />, level: 90, color: "from-orange-500 to-red-600" },
@@ -170,59 +184,71 @@ const AboutSection = () => {
                 />
                 
                 {/* Main profile container */}
-                <motion.div 
-                  className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 rounded-3xl p-8 border border-gray-700 backdrop-blur-xl shadow-2xl mt-0"
-                  whileHover={{ 
-                    scale: 1.02,
-                    rotateY: 5,
-                    rotateX: 5,
-                    z: 50
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                >
-                  {/* Profile image with 3D effect */}
-                  <motion.div 
-                    className="relative w-full aspect-square bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <motion.div 
-                      className="text-8xl font-black text-black select-none"
-                      animate={{ 
-                        rotateY: isHovered ? [0, 360] : 0,
-                        scale: isHovered ? [1, 1.1, 1] : 1
-                      }}
-                      transition={{ duration: 2, ease: "easeInOut" }}
-                    >
-                      {/* Assuming this is your profile image. Make sure the URL is correct and accessible. */}
-                      <img src={"https://media-pnq1-2.cdn.whatsapp.net/v/t61.24694-24/328789428_7742629389166492_2249539091650252324_n.jpg?ccb=11-4&oh=01_Q5Aa2AFb7RdyFpV-c3Newcg1_sQepHMrBqpHpNiqLcJ1QB9qhQ&oe=688734AD&_nc_sid=5e03e0&_nc_cat=108"} className="w-full h-full object-cover rounded-2xl" alt="Profile" />
-                    </motion.div>
-                    
-                    {/* Shine effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
-                      animate={{
-                        x: isHovered ? ["-100%", "100%"] : "-100%"
-                      }}
-                      transition={{ duration: 1.5, ease: "easeInOut" }}
-                    />
-                  </motion.div>
-                  
-                  {/* Floating status indicator */}
-                  <motion.div 
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center shadow-lg"
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      boxShadow: [
-                        "0 0 10px rgba(34, 197, 94, 0.5)",
-                        "0 0 20px rgba(34, 197, 94, 0.8)",
-                        "0 0 10px rgba(34, 197, 94, 0.5)"
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </motion.div>
-                </motion.div>
+              <motion.div
+  className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 
+             rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 
+             border border-gray-700 backdrop-blur-xl shadow-2xl mt-0 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
+  whileHover={{
+    scale: 1.02,
+    rotateY: 5,
+    rotateX: 5,
+    z: 50,
+  }}
+  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+>
+  {/* Profile image with 3D effect */}
+  <motion.div
+    className="relative w-full aspect-square 
+               bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 
+               rounded-xl sm:rounded-2xl flex items-center justify-center 
+               overflow-hidden shadow-2xl"
+    whileHover={{ scale: 1.05 }}
+  >
+    <motion.div
+      className="text-4xl sm:text-6xl md:text-8xl font-black text-black select-none"
+      animate={{
+        rotateY: isHovered ? [0, 360] : 0,
+        scale: isHovered ? [1, 1.1, 1] : 1,
+      }}
+      transition={{ duration: 2, ease: "easeInOut" }}
+    >
+      {/* Profile image */}
+      <img
+        src="https://media-pnq1-2.cdn.whatsapp.net/v/t61.24694-24/328789428_7742629389166492_2249539091650252324_n.jpg?ccb=11-4&oh=01_Q5Aa2AFb7RdyFpV-c3Newcg1_sQepHMrBqpHpNiqLcJ1QB9qhQ&oe=688734AD&_nc_sid=5e03e0&_nc_cat=108"
+        className="w-full h-full object-cover rounded-xl sm:rounded-2xl"
+        alt="Profile"
+      />
+    </motion.div>
+
+    {/* Shine effect */}
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+      animate={{
+        x: isHovered ? ["-100%", "100%"] : "-100%",
+      }}
+      transition={{ duration: 1.5, ease: "easeInOut" }}
+    />
+  </motion.div>
+
+  {/* Floating status indicator */}
+  <motion.div
+    className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 
+               w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 
+               bg-green-400 rounded-full flex items-center justify-center shadow-lg"
+    animate={{
+      scale: [1, 1.2, 1],
+      boxShadow: [
+        "0 0 6px rgba(34, 197, 94, 0.5)",
+        "0 0 14px rgba(34, 197, 94, 0.8)",
+        "0 0 6px rgba(34, 197, 94, 0.5)",
+      ],
+    }}
+    transition={{ duration: 2, repeat: Infinity }}
+  >
+    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div>
+  </motion.div>
+</motion.div>
+
 
 
 
@@ -283,7 +309,7 @@ const AboutSection = () => {
                       transition: { duration: 0.5 }
                     }}
                   >
-                    Aniruddh
+                    Prince
                   </motion.span>{" "}
                   <motion.span 
                     className="text-gray-400 inline-block bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text hover:text-transparent"
@@ -292,7 +318,7 @@ const AboutSection = () => {
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
-                    Agrawal
+                    Sai
                   </motion.span>
                 </motion.h1>
                 
@@ -301,13 +327,14 @@ const AboutSection = () => {
                   className="flex items-center space-x-6"
                 >
                   <motion.div 
-                    className="h-1 bg-gradient-to-r from-gray-400 to-transparent rounded-full"
+                   className="h-1 bg-gradient-to-r from-gray-400 to-transparent rounded-full"
                     initial={{ width: 0 }}
-                    animate={{ width: "120px" }}
-                    transition={{ delay: 1, duration: 1 }}
-                  />
+                    animate={{
+                      width: lineWidth, // 70px on mobile (<sm), 118px otherwise
+                    }}
+                    transition={{ delay: 1, duration: 1 }}/>
                   <motion.p 
-                    className="text-2xl md:text-3xl text-gray-300 font-light tracking-wide"
+                    className="text-xs md:text-3xl text-gray-300 font-light tracking-wide"
                     animate={{
                       opacity: [0.7, 1, 0.7]
                     }}
@@ -321,7 +348,7 @@ const AboutSection = () => {
               {/* Enhanced Bio */}
             <motion.div variants={itemVariants} className="space-y-8">
   <motion.p 
-    className="text-xl md:text-2xl leading-relaxed text-white font-light"
+    className="text-xs md:text-2xl leading-relaxed text-white font-light"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay: 0.5 }}
@@ -344,116 +371,132 @@ const AboutSection = () => {
             </motion.div>
           </motion.div>
 
-          <div className='mt-16 lg:mt-24 space-y-12'>
-             {/* Revolutionary Skills Section */}
-              <motion.div variants={itemVariants} className="space-y-8">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-3xl font-bold text-gray-400">
-                    Expertise Arsenal
-                  </h3>
-                  <motion.button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="text-gray-400 hover:text-gray-300 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-                  </motion.button>
-                </div>
-                
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      className={`relative p-6 rounded-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden ${
-                        activeSkill === index 
-                          ? "border-gray-400 bg-white/10 scale-105" 
-                          : "border-gray-700 bg-gray-900/50 hover:border-gray-600"
-                      }`}
-                      onClick={() => {
-                        setActiveSkill(index);
-                        setIsPlaying(false);
-                      }}
-                      whileHover={{ scale: activeSkill === index ? 1.05 : 1.02 }}
-                    >
-                      {/* Skill progress background */}
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-10`}
-                        initial={{ x: "-100%" }}
-                        animate={{ 
-                          x: activeSkill === index ? "0%" : "-100%"
-                        }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      />
-                      
-                      <div className="relative z-10">
-                        <div className="flex items-center space-x-3 mb-3">
-                          <motion.div 
-                            className={`p-2 rounded-lg ${activeSkill === index ? "bg-white text-black" : "bg-gray-800 text-gray-400"}`}
-                            animate={{ rotate: activeSkill === index ? 360 : 0 }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            {skill.icon}
-                          </motion.div>
-                          <div className="font-bold text-white">{skill.name}</div>
-                        </div>
-                        
-                        {/* Skill level bar */}
-                        <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
-                          <motion.div
-                            className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                            initial={{ width: 0 }}
-                            animate={{ 
-                              width: activeSkill === index ? `${skill.level}%` : "0%"
-                            }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                          />
-                        </div>
-                        
-                        <motion.div 
-                          className="text-right text-sm text-gray-400"
-                          animate={{ 
-                            opacity: activeSkill === index ? 1 : 0.5
-                          }}
-                        >
-                          {skill.level}%
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+        <div className="mt-12 sm:mt-16 lg:mt-24 space-y-8 sm:space-y-12">
+  {/* Revolutionary Skills Section */}
+  <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400">
+        Expertise Arsenal
+      </h3>
+      <motion.button
+        onClick={() => setIsPlaying(!isPlaying)}
+        className="text-gray-400 hover:text-gray-300 transition-colors"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        {isPlaying ? (
+          <Pause className="w-5 h-5 sm:w-6 sm:h-6" />
+        ) : (
+          <Play className="w-5 h-5 sm:w-6 sm:h-6" />
+        )}
+      </motion.button>
+    </div>
 
-              {/* Epic CTA */}
-              <motion.div variants={itemVariants} className="pt-8">
-                <motion.button
-                  className="group relative px-12 py-6 bg-gradient-to-r from-gray-400 to-gray-500 text-black font-bold text-xl rounded-full overflow-hidden shadow-2xl"
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(255, 255, 0, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-gray-300 to-gray-400"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "0%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  <span className="relative z-10 flex items-center space-x-3">
-                    <span>Let&apos;s Create Magic</span>
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    >
-                      ✨
-                    </motion.div>
-                  </span>
-                </motion.button>
-              </motion.div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {skills.map((skill, index) => (
+        <motion.div
+          key={skill.name}
+          className={`relative p-4 sm:p-6 rounded-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden ${
+            activeSkill === index
+              ? "border-gray-400 bg-white/10 scale-105"
+              : "border-gray-700 bg-gray-900/50 hover:border-gray-600"
+          }`}
+          onClick={() => {
+            setActiveSkill(index);
+            setIsPlaying(false);
+          }}
+          whileHover={{ scale: activeSkill === index ? 1.05 : 1.02 }}
+        >
+          {/* Skill progress background */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-10`}
+            initial={{ x: "-100%" }}
+            animate={{
+              x: activeSkill === index ? "0%" : "-100%",
+            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
 
+          <div className="relative z-10">
+            <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-3">
+              <motion.div
+                className={`p-2 sm:p-3 rounded-lg ${
+                  activeSkill === index
+                    ? "bg-white text-black"
+                    : "bg-gray-800 text-gray-400"
+                }`}
+                animate={{ rotate: activeSkill === index ? 360 : 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {skill.icon}
+              </motion.div>
+              <div className="font-bold text-white text-sm sm:text-base md:text-lg">
+                {skill.name}
+              </div>
+            </div>
+
+            {/* Skill level bar */}
+            <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+              <motion.div
+                className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
+                initial={{ width: 0 }}
+                animate={{
+                  width: activeSkill === index ? `${skill.level}%` : "0%",
+                }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+            </div>
+
+            <motion.div
+              className="text-right text-xs sm:text-sm text-gray-400"
+              animate={{
+                opacity: activeSkill === index ? 1 : 0.5,
+              }}
+            >
+              {skill.level}%
+            </motion.div>
           </div>
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
+
+  {/* Epic CTA */}
+  <motion.div variants={itemVariants} className="pt-6 sm:pt-8">
+    <motion.button
+      className="group relative w-full sm:w-auto px-6 sm:px-10 md:px-12 py-3 sm:py-4 md:py-6 bg-gradient-to-r from-gray-400 to-gray-500 text-black font-bold text-lg sm:text-xl rounded-full overflow-hidden shadow-2xl"
+      whileHover={{
+        scale: 1.05,
+        boxShadow: "0 20px 40px rgba(255, 255, 0, 0.3)",
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-gray-300 to-gray-400"
+        initial={{ x: "-100%" }}
+        whileHover={{ x: "0%" }}
+        transition={{ duration: 0.3 }}
+      />
+
+      <span className="relative z-10 flex items-center justify-center space-x-2 sm:space-x-3">
+        <a href='https://www.instagram.com/01prinz?igsh=MWwydWN6anRkOXIzMw=='>
+
+        <span>Let&apos;s Create Magic</span>
+        </a>
+        <motion.div
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          <span className='animate-spin-slow '>
+            ✨
+          </span>
+          
+        </motion.div>
+      </span>
+    </motion.button>
+  </motion.div>
+</div>
+
         </div>
       </section>
     </div>
