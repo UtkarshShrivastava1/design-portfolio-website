@@ -1,16 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Play, Maximize2, Clock, Eye } from "lucide-react";
 
 const VideoGallery = () => {
   const [hoveredVideo, setHoveredVideo] = useState<number | null>(null);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState<(typeof videos)[0] | null>(
-    null
-  );
+  const [selectedVideo, setSelectedVideo] = useState<any | null>(null);
 
   const videos = [
+    // first four are portrait (1..4)
     {
       id: 1,
       title: "Mobile App Design Process",
@@ -20,8 +19,8 @@ const VideoGallery = () => {
       type: "portrait",
       thumbnail:
         "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=600&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here (MP4, WebM, etc.)
-      videoType: "mp4", // mp4, webm, ogg
+      videoUrl: "",
+      videoType: "mp4",
       isLive: false,
       category: "Mobile Design",
     },
@@ -32,10 +31,10 @@ const VideoGallery = () => {
         "Enterprise dashboard design and user experience optimization",
       duration: "4:20",
       views: "2.8K",
-      type: "landscape",
+      type: "portrait",
       thumbnail:
         "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "UX Design",
@@ -49,7 +48,7 @@ const VideoGallery = () => {
       type: "portrait",
       thumbnail:
         "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=600&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "Branding",
@@ -60,14 +59,16 @@ const VideoGallery = () => {
       description: "Modern e-commerce website design from concept to launch",
       duration: "5:30",
       views: "3.4K",
-      type: "landscape",
+      type: "portrait",
       thumbnail:
         "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "Web Design",
     },
+
+    // next four are landscape (5..8)
     {
       id: 5,
       title: "User Journey Mapping",
@@ -77,7 +78,7 @@ const VideoGallery = () => {
       type: "landscape",
       thumbnail:
         "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "UX Research",
@@ -88,10 +89,10 @@ const VideoGallery = () => {
       description: "Creative overhaul of a social networking app UI",
       duration: "3:55",
       views: "2.3K",
-      type: "portrait",
+      type: "landscape",
       thumbnail:
         "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=600&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "Mobile Design",
@@ -106,7 +107,7 @@ const VideoGallery = () => {
       type: "landscape",
       thumbnail:
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: false,
       category: "E-commerce",
@@ -121,35 +122,40 @@ const VideoGallery = () => {
       type: "landscape",
       thumbnail:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
+      videoUrl: "",
       videoType: "mp4",
       isLive: true,
       category: "Animation",
     },
-    {
-      id: 9,
-      title: "AR/VR Interface Design",
-      description:
-        "Exploring spatial design principles for immersive digital experiences",
-      duration: "5:20",
-      views: "3.8K",
-      type: "landscape",
-      thumbnail:
-        "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=600&fit=crop&crop=center",
-      videoUrl: "", // Add your video URL here
-      videoType: "mp4",
-      isLive: false,
-      category: "AR/VR Design",
-    },
   ];
 
-  const handleVideoPlay = (video: (typeof videos)[0]) => {
+  // split arrays for large-screen layout
+  const portraitVideos = videos
+    .filter((v) => v.type === "portrait")
+    .slice(0, 4);
+  const landscapeVideos = videos
+    .filter((v) => v.type === "landscape")
+    .slice(0, 4);
+
+  // keyboard escape + disable body scroll while modal open
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeVideoModal();
+    };
+    document.addEventListener("keydown", onKey);
+    if (showVideoModal) document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [showVideoModal]);
+
+  const handleVideoPlay = (video: any) => {
     if (video.videoUrl) {
-      // If video URL exists, open in modal or play inline
       setSelectedVideo(video);
       setShowVideoModal(true);
+      setPlayingVideo(video.id);
     } else {
-      // Fallback: show coming soon or redirect to external link
       alert(
         `Video "${video.title}" coming soon! Add videoUrl to enable playback.`
       );
@@ -162,21 +168,38 @@ const VideoGallery = () => {
     setPlayingVideo(null);
   };
 
-  const renderVideoCard = (video: (typeof videos)[0]) => {
-    const isPortrait = video.type === "portrait";
+  const renderVideoCard = (
+    video: any,
+    forcedAspect?: "portrait" | "landscape"
+  ) => {
+    const isPortrait = (forcedAspect ?? video.type) === "portrait";
 
     return (
-      <div
+      <article
+        role="button"
+        tabIndex={0}
         key={video.id}
-        className={`group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-gray-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-400/20 w-full h-full`}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleVideoPlay(video);
+          }
+        }}
+        onClick={() => handleVideoPlay(video)}
         onMouseEnter={() => setHoveredVideo(video.id)}
         onMouseLeave={() => setHoveredVideo(null)}
+        className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-gray-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-400/20 focus:outline-none focus:ring-2 focus:ring-gray-600"
       >
+        {/* On small screens we'll use aspect ratios; on large screens heights are fixed by parent container */}
         <div
-          className="absolute inset-0 cursor-pointer"
-          onClick={() => handleVideoPlay(video)}
+          className={`w-full overflow-hidden rounded-2xl ${
+            // This aspect will only be used when the parent doesn't fix height (small screens).
+            isPortrait
+              ? "aspect-[3/4] lg:aspect-[3/4]"
+              : "aspect-video lg:aspect-video"
+          }`}
+          style={{ height: "100%" }}
         >
-          {/* Video Element (hidden by default, shown when playing) */}
           {playingVideo === video.id && video.videoUrl ? (
             <video
               className="w-full h-full object-cover rounded-2xl"
@@ -189,130 +212,149 @@ const VideoGallery = () => {
               Your browser does not support the video tag.
             </video>
           ) : (
-            /* Thumbnail Image */
             <img
               src={video.thumbnail}
               alt={video.title}
               className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 rounded-2xl"
+              draggable={false}
+              loading="lazy"
             />
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500 pointer-events-none"></div>
 
-          {/* Live indicator */}
           {video.isLive && (
-            <div className="absolute top-3 left-3 px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full flex items-center">
+            <div className="absolute top-3 left-3 px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full flex items-center z-10">
               <div className="w-2 h-2 bg-white rounded-full mr-1 animate-pulse"></div>
               LIVE
             </div>
           )}
 
-          {/* Category badge */}
-          <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 text-gray-400 text-xs font-semibold rounded-full">
+          <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 text-gray-400 text-xs font-semibold rounded-full z-10">
             {video.category}
           </div>
-        </div>
 
-        {/* Play Button Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className={`w-14 h-14 rounded-full bg-white flex items-center justify-center transform transition-all duration-500 ${
-              hoveredVideo === video.id
-                ? "scale-110 shadow-2xl shadow-gray-400/50"
-                : "scale-100"
-            } ${playingVideo === video.id ? "opacity-0" : "opacity-100"}`}
-          >
-            <Play className="w-5 h-5 text-black ml-0.5" fill="currentColor" />
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <div className="flex items-center justify-between mb-2 text-xs text-gray-300">
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-1">
-                <Clock className="w-3 h-3" />
-                <span>{video.duration}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Eye className="w-3 h-3" />
-                <span>{video.views}</span>
-              </div>
-            </div>
-            <button
-              className="p-1.5 rounded-full bg-black/50 hover:bg-white/20 transition-colors"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleVideoPlay(video);
-              }}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div
+              className={`w-14 h-14 rounded-full bg-white flex items-center justify-center transform transition-all duration-500 ${
+                hoveredVideo === video.id
+                  ? "scale-110 shadow-2xl shadow-gray-400/50"
+                  : "scale-100"
+              } ${playingVideo === video.id ? "opacity-0" : "opacity-100"}`}
+              aria-hidden
             >
-              <Maximize2 className="w-3 h-3" />
-            </button>
+              <Play className="w-5 h-5 text-black ml-0.5" fill="currentColor" />
+            </div>
           </div>
-          <h3
-            className={`font-bold text-white group-hover:text-white transition-colors mb-1 ${
-              isPortrait ? "text-sm leading-tight" : "text-base"
-            }`}
-          >
-            {video.title}
-          </h3>
-          <p
-            className={`text-gray-300 leading-relaxed ${
-              isPortrait ? "text-xs" : "text-sm"
-            }`}
-          >
-            {video.description}
-          </p>
+
+          <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+            <div className="flex items-center justify-between mb-2 text-xs text-gray-300">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-3 h-3" />
+                  <span>{video.duration}</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Eye className="w-3 h-3" />
+                  <span>{video.views}</span>
+                </div>
+              </div>
+              <button
+                aria-label={`Open ${video.title}`}
+                className="p-1.5 rounded-full bg-black/50 hover:bg-white/20 transition-colors z-20"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleVideoPlay(video);
+                }}
+              >
+                <Maximize2 className="w-3 h-3" />
+              </button>
+            </div>
+
+            <h3
+              className={`font-bold text-white group-hover:text-white transition-colors mb-1 ${
+                isPortrait ? "text-sm leading-tight" : "text-base"
+              }`}
+            >
+              {video.title}
+            </h3>
+            <p
+              className={`text-gray-300 leading-relaxed ${
+                isPortrait ? "text-xs" : "text-sm"
+              } line-clamp-2`}
+            >
+              {video.description}
+            </p>
+          </div>
         </div>
 
         <div className="absolute inset-0 border-2 border-gray-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-      </div>
+      </article>
     );
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="text-center py-16">
-        <h1 className="text-4xl sm:text-6xl font-black mb-4 bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
-        <span className="text-white"> VIDEO</span>   GALLERY
+    <div className="min-h-screen bg-black text-white pb-20 px-4 sm:px-6 lg:px-12">
+      <div className="text-center py-12 sm:py-16">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
+          <span className="text-white"> VIDEO</span> GALLERY
         </h1>
-        <div className="w-32 h-1 bg-gray-500 mx-[49%] mb-4"></div>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+        <div className="w-20 h-1 bg-gray-500 mx-auto mb-4"></div>
+        <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-2">
           Explore my design process through video case studies and walkthroughs
         </p>
       </div>
 
-      <section className="py-8 sm:py-16 max-w-7xl mx-auto">
-        {/* CSS Grid with perfect alignment - optimized for 9 videos */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 auto-rows-fr">
-          {videos.map((video) => {
-            const isPortrait = video.type === "portrait";
-            return (
-              <div
-                key={video.id}
-                className={`${
-                  isPortrait
-                    ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-2" // Portrait: responsive spanning
-                    : "col-span-2 md:col-span-2 lg:col-span-2 row-span-1" // Landscape: consistent spanning
-                }`}
-                style={{
-                  minHeight: isPortrait ? "400px" : "200px",
-                }}
-              >
-                {renderVideoCard(video)}
+      <section className="py-8 sm:py-12 max-w-7xl mx-auto">
+        {/* ======= LARGE SCREEN: EXACT 4 PORTRAIT ABOVE + 4 LANDSCAPE BELOW =======
+            We show this layout only on lg and up. Portraits row use lg:h-96 and
+            landscapes row use lg:h-48 so combined they form a rectangle.
+        */}
+        <div className="hidden lg:block">
+          {/* Portrait row: 4 columns, each column same width, fixed height */}
+          <div className="grid grid-cols-4 gap-6 mb-4">
+            {portraitVideos.map((v) => (
+              <div key={v.id} className="h-96">
+                {/* Force portrait aspect by parent height */}
+                <div className="h-full">{renderVideoCard(v, "portrait")}</div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Landscape row: 4 columns, same width as above, shorter height so total matches portraits* (makes rectangle) */}
+          <div className="grid grid-cols-4 gap-6">
+            {landscapeVideos.map((v) => (
+              <div key={v.id} className="h-48">
+                <div className="h-full">{renderVideoCard(v, "landscape")}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ======= RESPONSIVE GRID for smaller screens (tablet & phone & below lg) ======= */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:hidden gap-6">
+          {videos.map((video) => (
+            <div key={video.id}>{renderVideoCard(video)}</div>
+          ))}
         </div>
       </section>
 
       {/* Video Modal */}
       {showVideoModal && selectedVideo && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-4xl">
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeVideoModal();
+          }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="relative w-full max-w-4xl mx-auto">
             <button
               onClick={closeVideoModal}
               className="absolute -top-12 right-0 text-white hover:text-gray-400 transition-colors"
+              aria-label="Close video"
             >
               <svg
                 className="w-8 h-8"
@@ -331,7 +373,7 @@ const VideoGallery = () => {
 
             {selectedVideo.videoUrl ? (
               <video
-                className="w-full rounded-lg"
+                className="w-full rounded-lg max-h-[80vh]"
                 controls
                 autoPlay
                 poster={selectedVideo.thumbnail}
@@ -367,10 +409,10 @@ const VideoGallery = () => {
       )}
 
       {/* Background decorative elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-gray-600/3 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/3 w-64 h-64 bg-gray-500/4 rounded-full blur-3xl"></div>
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-1/4 left-6 w-56 h-56 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-6 w-72 h-72 bg-gray-600/3 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/3 w-56 h-56 bg-gray-500/4 rounded-full blur-3xl"></div>
       </div>
     </div>
   );
