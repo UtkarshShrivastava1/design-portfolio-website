@@ -1,5 +1,6 @@
 import { connectToDatabse } from "@/app/dbConfig/dbconfig";
-import cloudinary from "@/app/lib/config";
+
+import {v2 as cloudinary }from "cloudinary";
 import ClientProject from "@/app/models/clientProjectModel";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
 
       // Upload image to Cloudinary
       const uploadResult = await new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.cloudinary.uploader.upload_stream(
+        const uploadStream = cloudinary.uploader.upload_stream(
           {
             folder: "client_projects",
             public_id: uuidv4(),
