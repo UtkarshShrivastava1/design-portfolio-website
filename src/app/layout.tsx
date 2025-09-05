@@ -13,7 +13,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Sochlabs.in",
-  description: "Admin + User App", 
+  description: "Admin + User App",
+  icons: {
+    icon: "/vercel.svg", // relative to the public/ folder
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
