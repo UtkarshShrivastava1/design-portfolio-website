@@ -1,4 +1,4 @@
-// src/app/api/projects/[id]/route.ts
+// src/app/api/clientproject/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabse } from "@/app/dbConfig/dbconfig"; // keep the name that matches your export
 import Project from "@/app/models/projectModel";
@@ -38,7 +38,7 @@ export async function GET(
 
     return NextResponse.json({ data: project }, { status: 200 });
   } catch (err: any) {
-    console.error("GET /api/projects/[id] error:", err);
+    console.error("GET /api/clientproject/[id] error:", err);
     return NextResponse.json(
       { error: err?.message || "Server error" },
       { status: 500 }
@@ -128,7 +128,7 @@ export async function PUT(
       { status: 200 }
     );
   } catch (error: any) {
-    console.error("PUT /api/projects/[id] error:", error);
+    console.error("PUT /api/clientproject/[id] error:", error);
     return NextResponse.json(
       { message: "Internal Server Error", error: error?.message || error },
       { status: 500 }
@@ -162,7 +162,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Project deleted" }, { status: 200 });
   } catch (err: any) {
-    console.error("DELETE /api/projects/[id] error:", err);
+    console.error("DELETE /api/clientproject/[id] error:", err);
     return NextResponse.json(
       { error: err?.message || "Server error" },
       { status: 500 }
