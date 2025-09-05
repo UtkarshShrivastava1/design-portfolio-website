@@ -66,19 +66,21 @@ function TestimonialForm() {
     <div className="flex h-screen bg-black text-white">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="flex-1 flex flex-col min-h-screen">
-        {/* Top Bar */}
-        <header className="bg-black  px-6 py-4 flex items-center justify-between border-amber-300">
-          <div className="flex items-center">
+      <div className="flex-1 flex flex-col min-h-screen scroll-m-6">
+         {/* Header */}
+        <header className="bg-black px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
+          <div className="flex items-center gap-4">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden mr-4 text-gray-400 hover:text-gray-300 transition-colors"
+              className="lg:hidden text-gray-400 hover:text-white"
             >
-              <Menu size={24} />
+              <Menu size={28} />
             </button>
-            <h1 className="text-2xl font-bold text-gray-400">Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-white">
+              Admin Dashboard
+            </h1>
           </div>
-          <div className="text-gray-300 text-sm">Admin</div>
+          <div className="text-gray-300 text-sm">Welcome, Admin</div>
         </header>
 
         <main className="flex-1 mt-20 md:ml-64 overflow-y-auto">

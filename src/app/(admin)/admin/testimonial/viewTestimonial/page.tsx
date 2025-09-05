@@ -15,17 +15,22 @@ const AdminTestimonials: React.FC = () => {
   const [editId, setEditId] = useState<string | null>(null);
   const [editHeadline, setEditHeadline] = useState<string>("");
   const [editDescription, setEditDescription] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   // Fetch testimonials from API
   const fetchTestimonials = async () => {
     try {
+      setLoading(true);
       const res = await fetch("/api/testimonial");
       const data = await res.json();
       console.log('Fetched testimonials:',data)
       setTestimonials(data.testimonials || []);
       console.log('Fetched testimonials:', testimonials);
-    } catch (err) {
+    } 
+     catch (err) {
       console.error("Failed to fetch testimonials", err);
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -94,6 +99,42 @@ const AdminTestimonials: React.FC = () => {
     setEditHeadline("");
     setEditDescription("");
   };
+
+  if (loading) {
+    return (
+     <div
+  role="status"
+  className="flex items-center space-x-3 justify-center min-h-screen bg-black"
+>
+  <svg
+    className="animate-spin h-10 w-10 text-gray-500"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      className="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+    />
+  </svg>
+
+  <span className="text-3xl font-medium text-gray-500">
+    Loading...
+  </span>
+</div>
+
+    );
+  }
+
 
   return (
     <div className="p-6 bg-black min-h-screen text-white max-w-full mx-auto">

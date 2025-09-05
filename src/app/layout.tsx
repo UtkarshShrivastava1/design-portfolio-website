@@ -13,13 +13,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Sochlabs.in",
-  description: "Admin + User App",
+  description: "Admin + User App", 
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans">
+      <body className="font-mono">
         <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
