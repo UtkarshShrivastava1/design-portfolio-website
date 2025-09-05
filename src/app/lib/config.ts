@@ -28,5 +28,6 @@ const uploadVideo = async (filePath: string) => {
   }
 };
 
-// Export both
+// Export named + default
 export { cloudinary, uploadVideo };
+export default cloudinary; // 👈 add this line
