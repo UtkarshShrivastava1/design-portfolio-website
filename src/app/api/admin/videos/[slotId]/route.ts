@@ -25,7 +25,6 @@ function uploadBufferToCloudinary(buffer: Buffer, options: any) {
 function extractTokenFromRequest(req: Request): string | null {
   const cookieHeader = req.headers.get("cookie") || "";
   if (!cookieHeader) return null;
-  // simple cookie parse
   const match = cookieHeader.match(/(?:^|;\s*)token=([^;]+)/);
   if (!match) return null;
   try {
@@ -35,10 +34,13 @@ function extractTokenFromRequest(req: Request): string | null {
   }
 }
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { slotId: string } }
-) {
+/**
+ * NOTE: second argument typed as `any` to satisfy Next.js build type expectations.
+ * We'll read `params` from `context.params` at runtime.
+ */
+export async function PUT(req: Request, context: any) {
+  const params = (context && context.params) || {};
+
   // --- AUTH: verify admin token from cookie ---
   try {
     const token = extractTokenFromRequest(req);
@@ -65,7 +67,6 @@ export async function PUT(
       );
     }
 
-    // payload should include admin id (your login issues a token with id)
     const adminId = payload?.id;
     if (!adminId)
       return NextResponse.json(
@@ -73,7 +74,7 @@ export async function PUT(
         { status: 403 }
       );
 
-    // make sure admin exists (optional but good)
+    // ensure admin exists
     await dbConnect();
     const adminUser = await adminModel.findById(adminId).lean();
     if (!adminUser)
@@ -86,7 +87,6 @@ export async function PUT(
     return NextResponse.json({ message: "Forbidden" }, { status: 403 });
   }
 
-  // --- validate slotId ---
   const slotId = Number(params.slotId);
   if (!slotId || slotId < 1 || slotId > 8) {
     return NextResponse.json(
@@ -98,10 +98,8 @@ export async function PUT(
   // parse multipart/form-data
   let formData: FormData;
   try {
-    // Request.formData() is available in Next App Router
-    // but can throw if not a multipart request
-    // So guard with try/catch
-    // @ts-ignore - DOM FormData type present
+    // Request.formData() available in App Router
+    // @ts-ignore
     formData = await (req as any).formData();
   } catch (err: any) {
     return NextResponse.json(
