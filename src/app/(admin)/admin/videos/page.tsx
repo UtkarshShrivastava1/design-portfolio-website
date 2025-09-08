@@ -4,16 +4,15 @@ import Sidebar from "@/app/(admin)/admin/components/Sidebar";
 import { Menu, Upload, Trash2, Edit3 } from "lucide-react";
 
 /**
- * Admin Upload page (enhanced)
+ * Final Admin Upload page (TypeScript-safe)
  *
- * Changes requested:
- * 1. placeholder slots 5-8 have decreased height (clearer for landscape)
- * 2. removed "View Videos" button
- * 3. improved UI for uploading thumbnails & videos (drag & drop, previews, capture frame)
- * 4. fixed metadata fields (title, description, category) always visible & editable
- * 5. additional small UI/UX improvements & responsiveness
- *
- * NOTE: This file keeps the same API endpoints you used earlier.
+ * - 8 slot preview bar
+ * - drag & drop thumbnail + thumbnail preview
+ * - select video + video preview
+ * - capture frame from video to use as thumbnail
+ * - upload progress + toasts
+ * - smaller height for slots 5-8 on landscape
+ * - remove video support (uses header x-remove-video: 1 on PUT)
  */
 
 type Slot = {
@@ -38,7 +37,7 @@ export default function UploadForm() {
   const [slots, setSlots] = useState<Slot[]>([]);
   const [slotId, setSlotId] = useState<number>(1);
 
-  // Controlled form states
+  // form state
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -46,7 +45,7 @@ export default function UploadForm() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [progress, setProgress] = useState<number>(0);
 
-  // preview URLs (revoke when changed)
+  // preview URLs
   const [thumbnailPreviewUrl, setThumbnailPreviewUrl] = useState<string | null>(
     null
   );
@@ -60,7 +59,10 @@ export default function UploadForm() {
   const videoInputRef = useRef<HTMLInputElement | null>(null);
   const dropRef = useRef<HTMLDivElement | null>(null);
 
-  // small CSS: make slots 5-8 visually shorter in landscape via inline style injection
+  // drag state
+  const [isDragging, setIsDragging] = useState(false);
+
+  // inject small CSS for landscape small slots (cleanup on unmount)
   useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = `
@@ -69,9 +71,12 @@ export default function UploadForm() {
       }
     `;
     document.head.appendChild(style);
-    return () => document.head.removeChild(style);
+    return () => {
+      if (style.parentNode) style.parentNode.removeChild(style);
+    };
   }, []);
 
+  // fetch slots on mount
   useEffect(() => {
     fetchSlots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,7 +93,7 @@ export default function UploadForm() {
     }
   }
 
-  // when selected slot changes populate metadata
+  // when selected slot changes populate metadata & previews
   useEffect(() => {
     const s = slots.find((x) => x.slotId === slotId);
     if (s) {
@@ -97,13 +102,10 @@ export default function UploadForm() {
       setCategory(s.category || "");
       setThumbnailFile(null);
       setVideoFile(null);
-
-      // set preview urls to existing remote urls (do not revoke)
       setThumbnailPreviewUrl(s.thumbnailUrl || null);
       setVideoPreviewUrl(s.videoUrl || null);
       setProgress(0);
     } else {
-      // clear if no slot
       setTitle("");
       setDescription("");
       setCategory("");
@@ -111,40 +113,66 @@ export default function UploadForm() {
       setVideoFile(null);
       setThumbnailPreviewUrl(null);
       setVideoPreviewUrl(null);
+      setProgress(0);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slotId, slots]);
 
   function addToast(type: Toast["type"], message: string) {
     const id = ++toastCounter.current;
     const t: Toast = { id, type, message };
     setToasts((s) => [t, ...s]);
-    setTimeout(() => {
-      setToasts((s) => s.filter((x) => x.id !== id));
-    }, 3500);
+    setTimeout(() => setToasts((s) => s.filter((x) => x.id !== id)), 3500);
   }
 
-  // revoke earlier object URLs when files change
+  // revoke object URLs when component unmounts or when a new preview is set
+  const lastThumbUrlRef = useRef<string | null>(null);
+  const lastVideoUrlRef = useRef<string | null>(null);
   useEffect(() => {
+    // revoke previous thumbnail if it was an object URL (we create them from File)
+    if (
+      lastThumbUrlRef.current &&
+      lastThumbUrlRef.current !== thumbnailPreviewUrl
+    ) {
+      try {
+        URL.revokeObjectURL(lastThumbUrlRef.current);
+      } catch {}
+    }
+    lastThumbUrlRef.current = thumbnailPreviewUrl;
+    // same for video
+    if (
+      lastVideoUrlRef.current &&
+      lastVideoUrlRef.current !== videoPreviewUrl
+    ) {
+      try {
+        URL.revokeObjectURL(lastVideoUrlRef.current);
+      } catch {}
+    }
+    lastVideoUrlRef.current = videoPreviewUrl;
+
     return () => {
-      if (thumbnailPreviewUrl && thumbnailFile)
-        URL.revokeObjectURL(thumbnailPreviewUrl);
-      if (videoPreviewUrl && videoFile) URL.revokeObjectURL(videoPreviewUrl);
+      if (lastThumbUrlRef.current) {
+        try {
+          URL.revokeObjectURL(lastThumbUrlRef.current);
+        } catch {}
+      }
+      if (lastVideoUrlRef.current) {
+        try {
+          URL.revokeObjectURL(lastVideoUrlRef.current);
+        } catch {}
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [thumbnailPreviewUrl, videoPreviewUrl]);
 
-  // drag & drop handlers for thumbnail area
-  const [isDragging, setIsDragging] = useState(false);
-
+  // drag & drop handlers for thumbnail area (attach listeners to dropRef)
   useEffect(() => {
     const node = dropRef.current;
     if (!node) return;
+
     const onDragOver = (e: DragEvent) => {
       e.preventDefault();
       setIsDragging(true);
     };
-    const onLeave = (e: DragEvent) => {
+    const onDragLeave = (e: DragEvent) => {
       e.preventDefault();
       setIsDragging(false);
     };
@@ -155,36 +183,38 @@ export default function UploadForm() {
       if (!files || files.length === 0) return;
       handleThumbnailFile(files[0]);
     };
-    node.addEventListener("dragover", onDragOver);
-    node.addEventListener("dragleave", onLeave);
-    node.addEventListener("drop", onDrop);
+
+    // add listeners
+    node.addEventListener("dragover", onDragOver as EventListener);
+    node.addEventListener("dragleave", onDragLeave as EventListener);
+    node.addEventListener("drop", onDrop as EventListener);
+
     return () => {
-      node.removeEventListener("dragover", onDragOver);
-      node.removeEventListener("dragleave", onLeave);
-      node.removeEventListener("drop", onDrop);
+      node.removeEventListener("dragover", onDragOver as EventListener);
+      node.removeEventListener("dragleave", onDragLeave as EventListener);
+      node.removeEventListener("drop", onDrop as EventListener);
     };
   }, []);
 
+  // helper: set thumbnail file and preview
   function handleThumbnailFile(f: File | null) {
     if (!f) return;
     if (!f.type.startsWith("image/")) {
       addToast("error", "Thumbnail must be an image.");
       return;
     }
-    if (thumbnailPreviewUrl && thumbnailFile)
-      URL.revokeObjectURL(thumbnailPreviewUrl);
     setThumbnailFile(f);
     const url = URL.createObjectURL(f);
     setThumbnailPreviewUrl(url);
   }
 
+  // helper: set video file and preview
   function handleVideoFile(f: File | null) {
     if (!f) return;
     if (!f.type.startsWith("video/")) {
       addToast("error", "Please choose a valid video file.");
       return;
     }
-    if (videoPreviewUrl && videoFile) URL.revokeObjectURL(videoPreviewUrl);
     setVideoFile(f);
     const url = URL.createObjectURL(f);
     setVideoPreviewUrl(url);
@@ -198,43 +228,48 @@ export default function UploadForm() {
         addToast("error", "Load video first to capture frame.");
         return;
       }
-      // ensure loaded
-      await new Promise<void>((res) => {
-        if (vid.readyState >= 2) return res();
-        const onLoad = () => res();
-        vid.addEventListener("loadeddata", onLoad, { once: true });
-      });
 
-      // seek to 0.8s or 1s if available
+      // ensure some data is loaded
+      if (vid.readyState < 2) {
+        await new Promise<void>((res) => {
+          const handler = () => res();
+          vid.addEventListener("loadeddata", handler, { once: true });
+          // fallback timeout
+          setTimeout(res, 1200);
+        });
+      }
+
+      // try to seek to 0.8s (if duration allows)
       const seekTime = Math.min(1, vid.duration || 0);
-      vid.currentTime = seekTime;
-
-      await new Promise<void>((res) => {
-        const handler = () => res();
-        vid.addEventListener("seeked", handler, { once: true });
-        // fallback timeout
-        setTimeout(res, 800);
-      });
+      try {
+        vid.currentTime = seekTime;
+        await new Promise<void>((res) => {
+          const handler = () => res();
+          vid.addEventListener("seeked", handler, { once: true });
+          setTimeout(res, 900);
+        });
+      } catch {
+        // ignore seek errors; proceed to draw current frame
+      }
 
       const canvas = document.createElement("canvas");
       const vw = vid.videoWidth || 640;
       const vh = vid.videoHeight || 360;
-      // limit width to 1280 for memory
       const targetW = Math.min(1280, vw);
       const scale = targetW / vw;
       canvas.width = targetW;
       canvas.height = Math.round(vh * scale);
+
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("2D context not available");
       ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
 
       const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
       const blob = await (await fetch(dataUrl)).blob();
-      const file = new File([blob], `thumb-${slotId}.jpg`, {
+      const file = new File([blob], `thumb-slot-${slotId}.jpg`, {
         type: "image/jpeg",
       });
 
-      // set as thumbnailFile & preview
       handleThumbnailFile(file);
       addToast("success", "Captured thumbnail from video");
     } catch (err) {
@@ -276,7 +311,6 @@ export default function UploadForm() {
   async function handleUpload(e: React.FormEvent) {
     e.preventDefault();
 
-    // basic validation — require at least one change
     if (!videoFile && !thumbnailFile && !title && !description && !category) {
       addToast("info", "Make some changes before uploading.");
       return;
@@ -299,9 +333,8 @@ export default function UploadForm() {
     xhr.withCredentials = true;
 
     xhr.upload.onprogress = (ev) => {
-      if (ev.lengthComputable) {
+      if (ev.lengthComputable)
         setProgress(Math.round((ev.loaded / ev.total) * 100));
-      }
     };
 
     xhr.onload = async () => {
@@ -309,19 +342,18 @@ export default function UploadForm() {
       setProgress(0);
       if (xhr.status >= 200 && xhr.status < 300) {
         try {
-          const json = JSON.parse(xhr.responseText || "{}");
+          JSON.parse(xhr.responseText || "{}");
           addToast("success", "Upload successful");
           await fetchSlots();
           setThumbnailFile(null);
           setVideoFile(null);
-          // keep metadata cleared or keep? We'll keep cleared to indicate save
           setTitle("");
           setDescription("");
           setCategory("");
           setThumbnailPreviewUrl(null);
           setVideoPreviewUrl(null);
         } catch {
-          addToast("success", "Upload success");
+          addToast("success", "Upload successful");
           await fetchSlots();
         }
       } else {
@@ -340,14 +372,11 @@ export default function UploadForm() {
   }
 
   const selectedSlot = slots.find((s) => s.slotId === slotId) || null;
-
   const toggleSidebar = () => setSidebarOpen((s) => !s);
 
-  // helper to open file pickers
   const openThumbPicker = () => thumbInputRef.current?.click();
   const openVideoPicker = () => videoInputRef.current?.click();
 
-  // slot tile component
   function SlotTile({ s }: { s: Slot }) {
     const hasVideo = !!s.videoUrl;
     const smallClass = s.slotId >= 5 ? "slot-small" : "";
@@ -365,7 +394,6 @@ export default function UploadForm() {
         title={`Slot ${s.slotId} ${s.title ? "- " + s.title : ""}`}
       >
         <div className="w-full h-full">
-          {/* show thumbnail if available otherwise placeholder */}
           <img
             src={s.thumbnailUrl || "/favicon.ico"}
             alt={s.title || `Slot ${s.slotId}`}
@@ -412,11 +440,9 @@ export default function UploadForm() {
             )}
           </div>
 
-          {/* removed the "View Videos" button as requested */}
           <div className="flex items-center gap-3" />
         </header>
 
-        {/* slots preview row */}
         <section className="mb-6">
           <div className="flex gap-3 overflow-x-auto py-2 px-1">
             {Array.from({ length: 8 }).map((_, i) => {
@@ -432,9 +458,7 @@ export default function UploadForm() {
           </div>
         </section>
 
-        {/* main form + preview */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left: form */}
           <div className="lg:col-span-2 bg-black rounded-lg p-6 shadow">
             <form onSubmit={handleUpload} className="space-y-4">
               <div className="flex items-center justify-between">
@@ -491,7 +515,6 @@ export default function UploadForm() {
                 onChange={(e) => setDescription(e.target.value)}
               />
 
-              {/* Thumbnail area: drag & drop + preview */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">
@@ -507,7 +530,6 @@ export default function UploadForm() {
                     <div className="flex gap-3 items-center">
                       <div className="w-28 h-20 rounded overflow-hidden bg-gray-900 flex items-center justify-center">
                         {thumbnailPreviewUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={thumbnailPreviewUrl}
                             alt="thumb preview"
@@ -544,7 +566,6 @@ export default function UploadForm() {
                             <button
                               type="button"
                               onClick={() => {
-                                // remove local thumbnail selection (revert to slot's original)
                                 setThumbnailFile(null);
                                 setThumbnailPreviewUrl(
                                   selectedSlot?.thumbnailUrl || null
@@ -565,7 +586,6 @@ export default function UploadForm() {
                   </div>
                 </div>
 
-                {/* Video area */}
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">
                     Video
@@ -581,7 +601,6 @@ export default function UploadForm() {
                             controls
                           />
                         ) : selectedSlot?.videoUrl ? (
-                          // show remote video (no autoplay)
                           <video
                             ref={videoRef}
                             src={selectedSlot.videoUrl || undefined}
@@ -616,7 +635,6 @@ export default function UploadForm() {
                             }}
                           />
 
-                          {/* capture frame button only enabled if some video loaded */}
                           <button
                             type="button"
                             onClick={captureFrameAsThumbnail}
@@ -659,7 +677,6 @@ export default function UploadForm() {
                 </div>
               </div>
 
-              {/* progress + animation */}
               {loading && (
                 <div className="mt-2">
                   <div className="w-full bg-gray-800 rounded h-3 overflow-hidden">
@@ -678,12 +695,10 @@ export default function UploadForm() {
             </form>
           </div>
 
-          {/* Right: preview & quick actions */}
           <aside className="bg-black rounded-lg p-6 shadow flex flex-col gap-4">
             <div className="flex items-start gap-4">
               <div className="w-28 h-40 rounded-lg overflow-hidden border border-gray-700 bg-gray-800 flex items-center justify-center">
                 {thumbnailPreviewUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={thumbnailPreviewUrl}
                     alt="thumbnail"
@@ -738,10 +753,7 @@ export default function UploadForm() {
 
                   <button
                     type="button"
-                    onClick={() => {
-                      // focus video input
-                      openVideoPicker();
-                    }}
+                    onClick={() => openVideoPicker()}
                     className="text-sm px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 text-white"
                   >
                     Change Video
@@ -761,7 +773,6 @@ export default function UploadForm() {
         </section>
       </div>
 
-      {/* Toasts */}
       <div className="fixed right-4 bottom-4 flex flex-col-reverse gap-3 z-50">
         {toasts.map((t) => (
           <div
