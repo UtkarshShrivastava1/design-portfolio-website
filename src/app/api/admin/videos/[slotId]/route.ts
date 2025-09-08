@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+// src/app/api/admin/videos/[slotId]/route.ts
+import { NextResponse } from "next/server";
 import { Readable } from "stream";
 import dbConnect from "@/lib/mongodb";
 import VideoSlot from "@/app/models/VideoSlot";
 import cloudinary from "@/lib/cloudinary";
-import { requireAdminFromReq } from "@/lib/auth";
+import jwt from "jsonwebtoken";
+import adminModel from "@/app/models/adminModel";
 
 /** Stream buffer -> Cloudinary upload via upload_stream **/
 function uploadBufferToCloudinary(buffer: Buffer, options: any) {
@@ -19,17 +21,72 @@ function uploadBufferToCloudinary(buffer: Buffer, options: any) {
   });
 }
 
+/** helper to extract token cookie from a standard Request */
+function extractTokenFromRequest(req: Request): string | null {
+  const cookieHeader = req.headers.get("cookie") || "";
+  if (!cookieHeader) return null;
+  // simple cookie parse
+  const match = cookieHeader.match(/(?:^|;\s*)token=([^;]+)/);
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
+}
+
 export async function PUT(
-  req: NextRequest,
+  req: Request,
   { params }: { params: { slotId: string } }
 ) {
-  // Verify admin JWT cookie
+  // --- AUTH: verify admin token from cookie ---
   try {
-    await requireAdminFromReq(req);
-  } catch {
+    const token = extractTokenFromRequest(req);
+    if (!token)
+      return NextResponse.json(
+        { message: "Forbidden - no token" },
+        { status: 403 }
+      );
+
+    const secret = process.env.JWT_SECRET_KEY;
+    if (!secret)
+      return NextResponse.json(
+        { message: "Server missing JWT secret" },
+        { status: 500 }
+      );
+
+    let payload: any;
+    try {
+      payload = jwt.verify(token, secret);
+    } catch (err) {
+      return NextResponse.json(
+        { message: "Forbidden - invalid token" },
+        { status: 403 }
+      );
+    }
+
+    // payload should include admin id (your login issues a token with id)
+    const adminId = payload?.id;
+    if (!adminId)
+      return NextResponse.json(
+        { message: "Forbidden - malformed token" },
+        { status: 403 }
+      );
+
+    // make sure admin exists (optional but good)
+    await dbConnect();
+    const adminUser = await adminModel.findById(adminId).lean();
+    if (!adminUser)
+      return NextResponse.json(
+        { message: "Forbidden - admin not found" },
+        { status: 403 }
+      );
+  } catch (err) {
+    console.error("Auth check failed:", err);
     return NextResponse.json({ message: "Forbidden" }, { status: 403 });
   }
 
+  // --- validate slotId ---
   const slotId = Number(params.slotId);
   if (!slotId || slotId < 1 || slotId > 8) {
     return NextResponse.json(
@@ -38,10 +95,14 @@ export async function PUT(
     );
   }
 
-  // parse multipart FormData
+  // parse multipart/form-data
   let formData: FormData;
   try {
-    formData = await req.formData();
+    // Request.formData() is available in Next App Router
+    // but can throw if not a multipart request
+    // So guard with try/catch
+    // @ts-ignore - DOM FormData type present
+    formData = await (req as any).formData();
   } catch (err: any) {
     return NextResponse.json(
       { message: "Invalid form data", error: String(err) },
@@ -101,15 +162,12 @@ export async function PUT(
       updateDoc.thumbnailUrl = tres.secure_url;
     }
 
-    // upsert the slot
+    // upsert the slot — force type from slotId to be safe
     const slot = await VideoSlot.findOneAndUpdate(
       { slotId },
       {
-        $set: updateDoc,
-        $setOnInsert: {
-          type: slotId <= 4 ? "portrait" : "landscape",
-          views: 0,
-        },
+        $set: { ...updateDoc, type: slotId <= 4 ? "portrait" : "landscape" },
+        $setOnInsert: { views: 0 },
       },
       { upsert: true, new: true }
     );
