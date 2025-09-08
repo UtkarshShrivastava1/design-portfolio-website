@@ -1,87 +1,99 @@
-"use client"
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Eye, EyeOff, User, Lock, AlertCircle } from 'lucide-react';
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Eye, EyeOff, User, Lock, AlertCircle, ArrowLeft } from "lucide-react";
 
 export default function Page() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const router = useRouter();
 
-// interface AdminLoginInputChangeEvent extends React.ChangeEvent<HTMLInputElement> {}
-
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFormData((prev: AdminLoginFormData) => ({
-        ...prev,
-        [name]: value
+      ...prev,
+      [name]: value,
     }));
     // Clear error when user starts typing
-    if (error) setError('');
-};
+    if (error) setError("");
+  };
 
-interface AdminLoginFormData {
+  interface AdminLoginFormData {
     email: string;
     password: string;
-}
+  }
 
-interface AdminLoginResponse {
+  interface AdminLoginResponse {
     message?: string;
     [key: string]: unknown;
-}
+  }
 
-const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-        const response = await fetch('/api/admin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: formData.email,
-                password: formData.password
-            })
-        });
-        
-        const data: AdminLoginResponse = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(data.message || 'Login failed');
-        }
-        router.push('/admin/dashboard');
-        
-        // Handle successful login
-        // console.log('Login successful:', data);
-        
-        // Redirect to admin dashboard
-        
+      const response = await fetch("/api/admin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data: AdminLoginResponse = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+      router.push("/admin/dashboard");
     } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : 'Login failed. Please try again.';
-          setError(message);
+      const message =
+        err instanceof Error ? err.message : "Login failed. Please try again.";
+      setError(message);
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-};
+  };
+
+  // Back handler: navigate to external site (same tab)
+  const goBackToSoch = () => {
+    // explicit assignment to keep history behavior predictable
+    window.location.href = "https://www.sochlabs.in/";
+  };
 
   return (
     <div className="min-h-screen pt-20 bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Back button */}
+        <div className="mb-4">
+          <button
+            onClick={goBackToSoch}
+            className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white bg-gray-800/40 px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to sochlabs
+          </button>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-400">
             <User className="text-gray-400 w-8 h-8 " />
           </div>
           <h1 className="text-3xl font-bold text-gray-400 mb-2">Admin Login</h1>
-          <p className="text-gray-600">Enter your credentials to access the admin panel</p>
+          <p className="text-gray-600">
+            Enter your credentials to access the admin panel
+          </p>
         </div>
 
         {/* Login Form */}
@@ -97,7 +109,10 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
             {/* Email Input */}
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email Address
               </label>
               <div className="relative">
@@ -117,12 +132,15 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
@@ -136,8 +154,13 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
             </div>
@@ -155,16 +178,14 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
                   <span>Signing in...</span>
                 </div>
               ) : (
-                'Sign In'
+                "Sign In"
               )}
             </button>
           </div>
 
           {/* Footer */}
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
-              Secure admin access only
-            </p>
+            <p className="text-sm text-gray-500">Secure admin access only</p>
           </div>
         </div>
 
