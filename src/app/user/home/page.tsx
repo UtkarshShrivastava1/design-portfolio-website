@@ -93,7 +93,7 @@ const Portfolio = () => {
               
               objectPosition="center"
               layout="responsive"
-              width={1920}
+              width={1920} 
               height={1080}
               quality={100}
               className="h-auto md:max-w-[100%] md:background-image: var(<custom-property>);"
