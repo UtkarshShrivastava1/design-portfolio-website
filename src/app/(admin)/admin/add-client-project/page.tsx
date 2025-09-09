@@ -175,19 +175,21 @@ function AddClientForm() {
       {/* Main Content Area */}
       <main className="flex-1 mt-16 lg:mt-0 lg:ml-64 overflow-y-auto bg-black text-white">
         {/* Header */}
-        <header className="bg-black px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
-          <div className="flex items-center gap-4">
+        <header className="bg-black px-3 sm:px-4 md:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-gray-800">
+          <div className="flex items-center">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden text-gray-400 hover:text-white"
+              className="lg:hidden mr-2 sm:mr-4 text-gray-400 hover:text-gray-300 transition-colors p-1"
             >
-              <Menu size={28} />
+              <Menu size={20} className="sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-xl sm:text-2xl font-bold text-white">
-              Admin Dashboard
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
+              Dashboard
             </h1>
           </div>
-          <div className="text-gray-300 text-sm">Welcome, Admin</div>
+          <div className="text-gray-300 text-xs sm:text-sm">
+            <span className="hidden sm:inline"></span>Admin
+          </div>
         </header>
 
         {/* Form */}

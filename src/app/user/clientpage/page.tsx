@@ -59,7 +59,7 @@ const ClientPage: React.FC = () => {
           {/* Left: Projects Carousel */}
           <div className="lg:w-1/2 mb-10 lg:mb-0">
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-400 mb-6">
-              Projects by {client.name}
+              Projects by Prince Sai
             </h1>
 
             {Array.isArray(client.projects) && client.projects.length > 0 && (
@@ -68,10 +68,11 @@ const ClientPage: React.FC = () => {
                   <div className="aspect-[16/9] relative">
                     <img
                       src={
-                        client.projects[activeIndexes[clientIndex]]
-                          .thumbnailURL
+                        client.projects[activeIndexes[clientIndex]].thumbnailURL
                       }
-                      alt={`Project thumbnail ${activeIndexes[clientIndex] + 1}`}
+                      alt={`Project thumbnail ${
+                        activeIndexes[clientIndex] + 1
+                      }`}
                       className="w-full h-full object-cover"
                     />
 
@@ -94,9 +95,7 @@ const ClientPage: React.FC = () => {
                       key={idx}
                       onClick={() =>
                         setActiveIndexes((prev) =>
-                          prev.map((val, i) =>
-                            i === clientIndex ? idx : val
-                          )
+                          prev.map((val, i) => (i === clientIndex ? idx : val))
                         )
                       }
                       className={`aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 ${
@@ -119,11 +118,15 @@ const ClientPage: React.FC = () => {
 
           {/* Right: Client Info */}
           <div className="lg:w-1/2 bg-gray-900 p-6 lg:p-8 rounded-lg h-screen">
-            <h2 className="text-3xl font-bold text-white mb-2">{client.name}</h2>
+            <h2 className="text-3xl font-bold text-white mb-2">
+              {client.name}
+            </h2>
             <p className="text-gray-400 text-lg font-medium mb-4">
               {client.company}
             </p>
-            <p className="text-gray-300 mb-6 italic">&quot;{client.workDid}&quot;</p>
+            <p className="text-gray-300 mb-6 italic">
+              &quot;{client.workDid}&quot;
+            </p>
 
             <div className="bg-black p-6 rounded-lg border-l-4 border-gray-400">
               <h3 className="text-xl font-semibold text-gray-400 mb-3">

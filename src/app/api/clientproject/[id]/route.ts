@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabse } from "@/app/dbConfig/dbconfig";
 import ClientProject from "@/app/models/clientProjectModel";
-
-import {v2 as cloudinary }from "cloudinary"; // Adjust this import as needed
+import cloudinary from "@/app/lib/config"; // Adjust this import as needed
 
 // DELETE /api/clientproject/[id]
 export async function DELETE(
@@ -52,7 +51,7 @@ export async function PUT(
       const buffer = Buffer.from(await file.arrayBuffer());
       const base64 = buffer.toString("base64");
       const dataUri = `data:${file.type};base64,${base64}`;
-      const uploadResult = await cloudinary.uploader.upload(dataUri, {
+      const uploadResult = await cloudinary.cloudinary.uploader.upload(dataUri, {
         folder: "clientprojects",
         resource_type: "image",
       });

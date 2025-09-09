@@ -81,20 +81,19 @@ const AdminDashboard = () => {
     <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-black px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
-          <div className="flex items-center gap-4">
+        <header className="bg-black px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center">
             <button
               onClick={toggleSidebar}
-              className="lg:hidden text-gray-400 hover:text-white"
+              className="lg:hidden mr-4 text-gray-400 hover:text-gray-300"
             >
-              <Menu size={28} />
+              <Menu size={24} />
             </button>
-            <h1 className="text-xl sm:text-2xl font-bold text-white">
-              Admin Dashboard
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-400">
+              Dashboard
             </h1>
           </div>
-          <div className="text-gray-300 text-sm">Welcome, Admin</div>
+          <div className="text-gray-300 text-xs sm:text-sm">Admin</div>
         </header>
 
         <main className="flex-1 px-4 py-6 sm:px-6 overflow-auto bg-black">

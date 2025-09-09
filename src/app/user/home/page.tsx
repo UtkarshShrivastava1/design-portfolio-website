@@ -90,13 +90,13 @@ const Portfolio = () => {
             <Image
               src="/BANNER_IMAGE.png"
               alt="Hero background"
-              
+              objectFit="cover"
               objectPosition="center"
               layout="responsive"
               width={1920} 
               height={1080}
               quality={100}
-              className="h-auto md:max-w-[100%] md:background-image: var(<custom-property>);"
+              className="md:h-auto md:max-w-auto md:background-image: var(<custom-property>);"
             />
             {/* <div className="absolute inset-0 bg-black bg-opacity-40 pointer-events-none" /> */}
           </div>

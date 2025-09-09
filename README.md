@@ -5,6 +5,7 @@ A sophisticated, dynamic portfolio website built with Next.js 14 and TypeScript,
 ## Features
 
 ### Client-Side
+
 - 🎨 Dynamic Gallery with Swiper.js integration
 - 📹 Video showcase section
 - 💼 Interactive Projects portfolio
@@ -14,6 +15,7 @@ A sophisticated, dynamic portfolio website built with Next.js 14 and TypeScript,
 - 🌙 Custom UI components and styling
 
 ### Admin Dashboard
+
 - 🔐 Secure admin authentication
 - 📝 Blog post management
 - 🖼️ Gallery content management
@@ -21,6 +23,7 @@ A sophisticated, dynamic portfolio website built with Next.js 14 and TypeScript,
 - 📊 Client project management
 
 ### Technical Features
+
 - 🔄 Server-side rendering with Next.js 14
 - 📦 MongoDB database integration
 - ☁️ Cloudinary for media storage
@@ -44,14 +47,15 @@ A sophisticated, dynamic portfolio website built with Next.js 14 and TypeScript,
 ## Getting Started
 
 1. Clone the repository:
-```bash
+
+````bash
 git clone [repository-url]
 
 ```bash
 npm install
 
 
-MONGO_URI=your_mongodb_uri
+MONGO_URI=your_MONGO_URI
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
 CLOUDINARY_API_SECRET=your_cloudinary_secret
@@ -87,3 +91,4 @@ MIT
 
 
 This README provides a comprehensive overview of your portfolio project, highlighting its key features, technical stack, and setup instructions. The structure is clean and professional, making it easy for other developers to understand and contribute to the project.This README provides a comprehensive overview of your portfolio project, highlighting its key features, technical stack, and setup instructions. The structure is clean and professional, making it easy for other developers to understand and contribute
+````
